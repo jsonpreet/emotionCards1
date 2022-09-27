@@ -1,0 +1,25 @@
+:root {
+    scroll-behavior: smooth;
+    --body-font-size: 1rem;
+    --body-font-family: "Montserrat",Helvetica,sans-serif;
+    --body-font-weight: 400;
+    --body-line-height: 1.6;
+    --body-letter-spacing: 0;
+    --body-text-transform: none;
+    --body-background-color: #fff;
+    --body-color: #2d3139;
+}
+
+* {
+  font-family: var(--body-font-family);
+  box-sizing: border-box;
+}
+
+html,
+body,
+#__next {
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--body-font-family);
+}
