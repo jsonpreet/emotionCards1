@@ -52,7 +52,7 @@ export default function Auth() {
                   e.preventDefault()
                   handleLogin(email)
               }}
-              className="flex items-center justify-center duration-200 capitalize w-full px-6 py-3 text-lg font-medium text-white md:text-lg md:py-3 bg-blue-600 rounded-full mt-5 hover:bg-blue-500"
+              className="flex items-center justify-center duration-200 capitalize w-full px-6 py-3 text-lg font-medium text-white md:text-lg md:py-3 bg-pink-600 rounded-full mt-5 hover:bg-pink-700"
               disabled={loading}>
               {loading ? <Spinner /> : <span>Send magic link</span>}
               </button>
