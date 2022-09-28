@@ -40,12 +40,12 @@ export const RESERVED_KEYS = new Set([
 ]);
 
 export const DEFAULT_REDIRECTS = {
-  home: "https://dub.sh",
-  signin: "https://app.dub.sh/login",
-  login: "https://app.dub.sh/login",
-  register: "https://app.dub.sh/register",
-  signup: "https://app.dub.sh/register",
-  app: "https://app.dub.sh",
-  dashboard: "https://app.dub.sh",
-  links: "https://app.dub.sh/links",
+  home: "http://localhost:3000",
+  signin: "http://app.localhost:3000/login",
+  login: "http://app.localhost:3000/login",
+  register: "http://app.localhost:3000/register",
+  signup: "http://app.localhost:3000/register",
+  app: "http://app.localhost:3000",
+  dashboard: "http://app.localhost:3000",
+  links: "http://app.localhost:3000/links",
 };

@@ -23,7 +23,7 @@ export const config = {
 export default async function middleware(req, ev) {
   const { hostname, key } = parse(req);
   const home = HOME_HOSTNAMES.has(hostname);
-  const app = hostname === "app.dub.sh" || hostname === "app.localhost:3000";
+  const app = hostname === "app.localhost:3000" || hostname === "app.localhost:3000";
 
   if (app) {
     return AppMiddleware(req);

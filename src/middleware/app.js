@@ -5,6 +5,7 @@ import { supabase } from "@lib/supabaseClient"
 export default async function AppMiddleware(req) {
   const { path } = parse(req);
   const { data, error } = await supabase.auth.getSession();
+  console.log(data, error)
   const session = data.session;
   if (!session && path !== "/login" && path !== "/register") {
     return NextResponse.redirect(new URL("/login", req.url));

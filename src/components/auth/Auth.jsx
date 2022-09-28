@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { supabase } from '@lib/supabaseClient'
+import { Spinner } from '@app/lib/icons'
 
 export default function Auth() {
   const [loading, setLoading] = useState(false)
@@ -11,7 +12,7 @@ export default function Auth() {
   const handleLogin = async (email) => {
     try {
       setLoading(true)
-      const { data, error } = await supabase.auth.signInWithOtp({ email, emailRedirectTo: 'http://localhost:3000/dashboard' })
+      const { data, error } = await supabase.auth.signInWithOtp({ email })
       console.log(data);
       if (error) throw error
       setSuccess(true)
@@ -28,9 +29,9 @@ export default function Auth() {
 
   return (
     <>
-      <div className="absolute z-0 top-0 right-0 w-full h-full p-4" style={{ backgroundImage: `linear-gradient(180deg,hsla(0,0%,100%,.92),hsla(0,0%,100%,.92)),url("/assets/bg-blur-hero.svg")`, backgroundRepeat: 'no-repeat', backgroundPosition: '0 0, 50% 100%', backgroundSize: 'auto' }} />
-      <h1 className="text-4xl font-bold text-center relative">Sign In</h1>
-      <div className="auth w-full max-w-md">
+      <div className="absolute z-0 top-0 right-0 w-full h-full p-4 blurBG" />
+      <h1 className="text-4xl relative z-20 font-bold text-center">Sign In</h1>
+      <div className="auth relative z-20 w-full max-w-md">
         <div className="form-widget w-full mx-auto flex flex-col items-center justify-center h-full py-5 lg:py-8 relative">
           <p className="description w-full text-center">
               Sign in via magic link with your email below
@@ -53,7 +54,7 @@ export default function Auth() {
               }}
               className="flex items-center justify-center duration-200 capitalize w-full px-6 py-3 text-lg font-medium text-white md:text-lg md:py-3 bg-blue-600 rounded-full mt-5 hover:bg-blue-500"
               disabled={loading}>
-                  <span>{loading ? 'Loading' : 'Send magic link'}</span>
+              {loading ? <Spinner /> : <span>Send magic link</span>}
               </button>
           </div>
           {success && <div className='w-full bg-green-700 rounded-full mt-5 px-4 py-3 text-white text-center'>
