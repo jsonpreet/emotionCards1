@@ -1,3 +1,5 @@
+import { HomeIcon, Square3Stack3DIcon, Square2StackIcon, SquaresPlusIcon, UsersIcon, PhotoIcon, Cog8ToothIcon } from '@heroicons/react/20/solid'
+
 export const LOCALHOST_GEO_DATA = {
   city: "San Francisco",
   region: "CA",
@@ -49,3 +51,41 @@ export const DEFAULT_REDIRECTS = {
   dashboard: "http://app.localhost:3000",
   links: "http://app.localhost:3000/links",
 };
+
+export const MENU_ITEMS = {
+  dashboard: {
+    title: 'Dashboard',
+    Icon: HomeIcon,
+    link: '/'
+  },
+  templates: {
+    title: 'Templates',
+    Icon: Square3Stack3DIcon,
+    link: '/templates'
+  },
+  cards: {
+    title: 'Cards',
+    Icon: Square2StackIcon,
+    link: '/cards'
+  },
+  postcards: {
+    title: 'Postcards',
+    Icon: SquaresPlusIcon,
+    link: '/postcards'
+  },
+  media: {
+    title: 'Media',
+    Icon: PhotoIcon,
+    link: '/media'
+  },
+  users: {
+    title: 'Users',
+    Icon: UsersIcon,
+    link: '/users'
+  },
+  settings: {
+    title: 'Settings',
+    Icon: Cog8ToothIcon,
+    link: '/settings'
+  }
+}

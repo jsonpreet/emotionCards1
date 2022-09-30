@@ -1,14 +1,20 @@
 import { useState, Fragment } from 'react'
+import { useRouter } from 'next/router'
+import { useTheme } from 'next-themes'
+import Link from 'next/link'
 import { Menu, Transition, Switch } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { classNames } from '@app/lib/functions'
 import { supabaseClient } from '@supabase/supabase-auth-helpers/nextjs'
-import { useRouter } from 'next/router'
-import { useTheme } from 'next-themes'
-import Link from 'next/link'
+import { useAuthStore } from '@app/stores/auth'
 
 const Header = () => {
   const router = useRouter()
+
+  const { user } = useAuthStore()
+
+  console.log(user);
+
   const [enabled, setEnabled] = useState(false)
   const { theme, setTheme } = useTheme()
 
@@ -16,6 +22,9 @@ const Header = () => {
     if (theme === 'light') {
       setTheme('dark')
       setEnabled(true)
+    } else if(theme === 'dark') {
+      setTheme('light')
+      setEnabled(false)
     } else {
       setTheme('light')
       setEnabled(false)
@@ -27,13 +36,13 @@ const Header = () => {
     router.push('/')
   }
   return (
-    <div className='z-10 flex flex-row bg-white dark:bg-gray-900 bg-opacity-75 fixed backdrop-blur-3xl w-full px-4 py-2'>
-      <div className="w-full px-4 mx-auto flex flex-row justify-between items-center">
+    <div className='z-10 flex flex-row bg-white dark:bg-gray-900 fixed backdrop-blur-3xl w-full px-4 py-2'>
+      <div className="w-full mx-auto flex flex-row justify-between items-center">
         <div className='logo'>
             <Link href='/' passHref><a className='cursor-pointer'><img src='/logo-icon.png' alt='logo' className='w-10 h-10' /></a></Link>
         </div>   
         <div className='headerRight flex flex-row justify-between items-center'>
-          <div className='themeSwitch mr-4'>
+          {/* <div className='themeSwitch mr-4'>
             <Switch
               checked={enabled}
               onChange={toggleTheme}
@@ -41,21 +50,21 @@ const Header = () => {
                 enabled ? 'bg-pink-600' : 'bg-gray-200'
               } relative inline-flex h-6 w-11 items-center rounded-full`}
             >
-              <span className="sr-only">{(theme == 'light') ? 'Dark' : 'Light'}</span>
+              <span className="sr-only">{(theme === 'light') ? 'Dark' : 'Light'}</span>
               <span
                 className={`${
                   enabled ? 'translate-x-6' : 'translate-x-1'
                 } inline-block h-4 w-4 transform rounded-full bg-white transition`}
               />
             </Switch>
-          </div>
+          </div> */}
           <div className='userMenu'>
             <Menu as="div" className="relative inline-block text-left">
               <div>
                 <Menu.Button className="inline-flex w-full justify-center items-center dark:text-white shadow-none text-sm font-medium text-gray-700 focus:outline-none">
                    <div className="flex items-center justify-center mr-2 w-7 h-7 bg-white rounded-full shadow-lg">
                         <img className="w-6 h-6 rounded-full" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="avatar" />
-                    </div> <span>Hey, User</span>
+                    </div> <span>Hey, {user?.user?.user_metadata?.name || `User`}</span>
                   <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
                 </Menu.Button>
               </div>
@@ -73,7 +82,7 @@ const Header = () => {
                   <div className="py-1">
                     <Menu.Item>
                       {({ active }) => (
-                        <Link href="/">
+                        <Link href="/account">
                           <a
                           className={classNames(
                             active ? 'bg-gray-100 text-gray-900 dark:text-gray-700' : 'dark:text-white text-gray-700',

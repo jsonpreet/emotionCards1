@@ -30,3 +30,33 @@ body,
   background-repeat: no-repeat;
   background-size: auto;
 }
+
+.gradients {
+    display: flex;
+    flex: 1 1;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+  .circle {
+    height: 35rem;
+    width: 35rem;
+    position: absolute;
+    border-radius: 50%;
+    &.orange {
+      background: radial-gradient(50% 50% at 50% 50%,rgba(219,39,119,.2) 0,hsla(0,0%,100%,0) 100%);
+      left: -27rem;
+      top: -20rem;
+    }
+    &.purple {
+      background: radial-gradient(50% 50% at 50% 50%,rgba(124, 58, 237,.15) 0,hsla(0,0%,100%,0) 100%);
+      right: -27rem;
+      top: -20rem;
+    }
+    &.yellow {
+      background: radial-gradient(50% 50% at 50% 50%,rgba(220, 38, 38,.2) 0,hsla(0,0%,100%,0) 100%);
+      left: auto;
+      right: auto;
+      bottom: -25rem;
+    }
+  }
+}

@@ -4,12 +4,20 @@ import { Layout } from '@app/layouts'
 import { Dashboard } from '@app/components/user/dashboard'
 import { useUser } from '@supabase/supabase-auth-helpers/react'
 import { supabaseServerClient, withPageAuth } from '@supabase/supabase-auth-helpers/nextjs'
+import { useEffect } from 'react'
+import { useAuthStore } from '@app/stores/auth'
 
 const Home = () => {
+  const user = useUser()
+  const { setUser, setIsLoggedIn } = useAuthStore()
+  useEffect(() => {
+    setUser(user)
+    setIsLoggedIn(true)
+  }, [user])
   return (
     <>
       <Head>
-        <title>Emotion Cards</title>
+        <title>Dashboard - Emotion Cards</title>
       </Head>
       <Layout>
         <Dashboard/>

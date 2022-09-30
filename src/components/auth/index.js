@@ -1,1 +1,2 @@
-export { default as Auth } from './Auth';
+export { default as SignIn } from './login';
+export { default as SignUp } from './register';
