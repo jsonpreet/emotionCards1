@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Layout } from '@app/layouts'
 
-function Templates() {
+const Templates = () => {
   return (
     <>
       <Head>

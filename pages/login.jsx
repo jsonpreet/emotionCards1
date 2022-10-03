@@ -7,6 +7,7 @@ import { useEffect } from "react"
 const Login = () => {
   const router = useRouter()
   const { user, error } = useUser()
+  console.log(user);
   useEffect(() => {
     if (user) router.push('/')
   }, [user])
