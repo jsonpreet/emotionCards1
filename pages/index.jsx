@@ -7,19 +7,11 @@ import { supabaseServerClient, withPageAuth } from '@supabase/supabase-auth-help
 import { useEffect } from 'react'
 import { useAuthStore } from '@app/stores/auth'
 
-export default function Home () {
-  const { user, error } = useUser();
+export default function Home ({user}) {
+  //const { user, error } = useUser();
   const router = useRouter()
   const { setUser, setIsLoggedIn } = useAuthStore()
   console.log(user);
-  useEffect(() => {
-    if (user) {
-      setUser(user)
-      setIsLoggedIn(true)
-    } else {
-      router.push('/login')
-    }
-  }, [user])
   return (
     <>
       <Head>
