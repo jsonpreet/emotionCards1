@@ -13,7 +13,7 @@ const Home = () => {
   const { setUser, setIsLoggedIn } = useAuthStore()
   console.log(user);
   useEffect(() => {
-    if (user) {
+    if (user !== null) {
       setUser(user)
       setIsLoggedIn(true)
     } else {
