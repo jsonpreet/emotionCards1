@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { supabaseClient } from '@supabase/supabase-auth-helpers/nextjs'
 import { Spinner } from '@app/lib/icons'
-import { Gradient1, Gradient2 } from '@app/components/ui/backgrounds'
+import { Gradient1, Gradient2 } from '@components/ui/backgrounds'
 import Link from 'next/link'
 
 const SignIn = () => {
