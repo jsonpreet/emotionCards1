@@ -1,25 +1,35 @@
 
-import '@styles/globals.css';
-import '@styles/app.scss';
-import NextNProgress from 'nextjs-progressbar';
-import { ThemeProvider } from "next-themes";
+import NextNProgress from 'nextjs-progressbar'
+import { ThemeProvider } from "next-themes"
 import { UserProvider } from '@supabase/supabase-auth-helpers/react'
 import { supabaseClient } from '@supabase/supabase-auth-helpers/nextjs'
-import '@app/libs/fontawesome-5.2.0/css/all.css';
-import '@styles/index.scss';
-import '@styles/canvas/canvas.scss';
-import '@styles/canvas/contextmenu.scss';
-import '@styles/canvas/fabricjs.scss';
-import '@styles/canvas/tooltip.scss';
+import { Provider as ScenifyProvider } from "@layerhub-io/react"
+import { AppProvider } from "@app/contexts/AppContext"
+import { DesignEditorProvider } from "@app/contexts/DesignEditor"
+import { I18nextProvider } from "react-i18next"
+import { TimerProvider } from "@layerhub-io/use-timer"
+import i18next from "i18next"
+import "@app/translations"
+import '@styles/globals.css'
+import '@styles/app.scss'
 
 
 function MyApp({ Component, pageProps }) {
+  
   return (
     <>
       <NextNProgress color="#cb0038" showOnShallow={true} />
       <ThemeProvider enableSystem={true} attribute="class">
         <UserProvider supabaseClient={supabaseClient}>
-          <Component {...pageProps} />
+          <DesignEditorProvider>
+            <TimerProvider>
+              <AppProvider>
+                <ScenifyProvider>
+                    <I18nextProvider i18n={i18next}><Component {...pageProps} /></I18nextProvider>
+                </ScenifyProvider>
+              </AppProvider>
+            </TimerProvider>
+          </DesignEditorProvider>
         </UserProvider>
       </ThemeProvider>
     </>

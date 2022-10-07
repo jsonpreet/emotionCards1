@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { supabase } from '@lib/supabaseClient'
+import { supabaseClient } from '@supabase/supabase-auth-helpers/nextjs'
 import { Spinner } from '@app/lib/icons'
-import { Gradient1, Gradient2 } from '@components/backgrounds/gradient'
+import { Gradient1, Gradient2 } from '@app/components/ui/backgrounds'
 import Link from 'next/link'
 
 const SignIn = () => {
@@ -15,7 +15,7 @@ const SignIn = () => {
   const handleLogin = async (email, password) => {
     try {
       setLoading(true)
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+      const { data, error } = await supabaseClient.auth.signIn({ email, password })
       if (error) throw error
       setSuccess(true)
       setError(false)

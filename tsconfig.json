@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+        "@app/*": [
+            "src/*"
+        ],
+        "@lib/*": [
+            "src/lib/*"
+        ],
+        "@stores/*": [
+            "src/stores/*"
+        ],
+        "@components/*": [
+            "src/components/*"
+        ],
+        "@styles/*": [
+            "styles/*"
+        ],
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+, "src/DesignEditor/components/Toolbox/Shared/Flip.jsx", "src/DesignEditor/components/Panels/panelItems/Customize.jsx", "src/contexts/DesignEditor.jsx", "src/contexts/AppContext.jsx", "src/constants/templates/index.js", "src/constants/app-options.js", "src/constants/contants.js", "src/DesignEditor/components/Panels/panelItems/Common/Gradient.jsx", "src/DesignEditor/components/Panels/panelItems/Videos.jsx", "src/DesignEditor/components/Panels/panelItems/Uploads.jsx", "src/DesignEditor/components/Panels/panelItems/TextProperties.jsx", "src/DesignEditor/components/Panels/panelItems/TextFill.jsx", "src/DesignEditor/components/Panels/panelItems/TextEffects.jsx", "src/DesignEditor/components/Panels/panelItems/Templates.jsx", "src/DesignEditor/components/Panels/panelItems/Pixabay.jsx", "src/DesignEditor/components/Panels/panelItems/PathFill.jsx", "src/DesignEditor/components/Panels/panelItems/Layers.jsx", "src/DesignEditor/components/Panels/panelItems/index.js", "src/DesignEditor/components/Panels/panelItems/Images.jsx", "src/DesignEditor/components/Panels/panelItems/Graphics.jsx", "src/DesignEditor/components/Panels/panelItems/FontSelector.jsx", "src/DesignEditor/components/Panels/panelItems/Elements", "src/DesignEditor/components/Panels/panelItems/Common/Outline.jsx", "src/DesignEditor/components/Panels/panelItems/CanvasFill.jsx", "src/DesignEditor/utils/scenes.js", "src/DesignEditor/components/Canvas/index.js", "src/DesignEditor/components/Canvas/Canvas.jsx", "src/DesignEditor/components/ContextMenu/index.js", "src/DesignEditor/components/ContextMenu/ContextMenu.jsx", "src/DesignEditor/components/EditorContainer/index.jsx", "src/DesignEditor/components/Footer/Graphic/Scenes.jsx", "src/DesignEditor/components/Footer/Graphic/SceneItem.jsx", "src/DesignEditor/components/Footer/Graphic/SceneContextMenu.jsx", "src/DesignEditor/components/Footer/Graphic/index.js", "src/DesignEditor/components/Footer/Graphic/Graphic.jsx", "src/DesignEditor/components/Footer/Footer.jsx", "src/DesignEditor/components/Footer/index.js", "src/DesignEditor/components/Navbar/Navbar.jsx", "src/DesignEditor/components/Navbar/index.js", "src/DesignEditor/components/Navbar/DesignTitle.jsx", "src/DesignEditor/components/Panels/index.js", "src/DesignEditor/components/Panels/PanelItem.jsx", "src/DesignEditor/components/Panels/Panels.jsx", "src/DesignEditor/components/Panels/PanelsList.jsx", "src/DesignEditor/DesignEditor.jsx", "src/DesignEditor/index.js", "src/DesignEditor/GraphicEditor.jsx", "src/DesignEditor/utils/text.js", "src/DesignEditor/components/Preview/Graphic.jsx", "src/DesignEditor/components/Preview/Preview.jsx", "src/DesignEditor/components/Preview/index.js", "src/DesignEditor/SelectEditor.jsx"  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

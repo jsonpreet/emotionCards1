@@ -1,19 +1,16 @@
-import { supabase } from '@lib/supabaseClient'
-import { useAuthStore } from '@stores/auth'
+// import { Card } from '@app/components/ui/card'
+import GraphicEditor from '@app/DesignEditor/GraphicEditor';
 
 const Dashboard = () => {
-  
-  const { setUser, setIsLoggedIn, setSession, setIsError, setError } = useAuthStore()
-  const logout = async () => {
-      const { data, error } = await supabase.auth.signOut()
-      setIsLoggedIn(false)
-      setSession(null)
-      setUser(null)
-      setError(null)
-      setIsError(false)
-  }
+
   return (
-  <div><button onClick={() => logout()}>Logout</button></div>
+    <div className='relative py-2'>
+      {/* <Card heading='Cards' classes={`mr-4 mb-4`}/>
+      <Card heading='Post Cards' classes={`mr-4 mb-4`}/>
+      <Card heading='Users' classes={`mr-4 mb-4`}/>
+      <Card heading='Media' classes={`mb-4`}/> */}
+      <GraphicEditor/>
+    </div>
   )
 }
 

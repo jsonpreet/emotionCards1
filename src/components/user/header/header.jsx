@@ -13,8 +13,6 @@ const Header = () => {
 
   const { user } = useAuthStore()
 
-  console.log(user);
-
   const [enabled, setEnabled] = useState(false)
   const { theme, setTheme } = useTheme()
 
