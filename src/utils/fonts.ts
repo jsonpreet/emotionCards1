@@ -1,4 +1,4 @@
-import { FontItem } from "~/interfaces/common"
+import { FontItem } from "@app/interfaces/common"
 import { IScene, ILayer, IStaticText } from "@layerhub-io/types"
 
 const getFontsFromObjects = (objects: Partial<ILayer>[]) => {
