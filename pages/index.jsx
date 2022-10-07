@@ -8,12 +8,12 @@ import { useEffect } from 'react'
 import { useAuthStore } from '@app/stores/auth'
 
 const Home = () => {
-  const user = useUser()
+  const { user, error } = useUser();
   const router = useRouter()
   const { setUser, setIsLoggedIn } = useAuthStore()
   console.log(user);
   useEffect(() => {
-    if (user.user !== null) {
+    if (user) {
       setUser(user)
       setIsLoggedIn(true)
     } else {
