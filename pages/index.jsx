@@ -9,10 +9,16 @@ import { useAuthStore } from '@app/stores/auth'
 
 const Home = () => {
   const user = useUser()
+  const router = useRouter()
   const { setUser, setIsLoggedIn } = useAuthStore()
+  console.log(user);
   useEffect(() => {
-    setUser(user)
-    setIsLoggedIn(true)
+    if (user) {
+      setUser(user)
+      setIsLoggedIn(true)
+    } else {
+      router.push('/login')
+    }
   }, [user])
   return (
     <>
