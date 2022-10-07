@@ -18,7 +18,7 @@ import { Listbox } from '@headlessui/react'
 
 const TextProperties = () => {
   const { fonts } = useFontsStore()
-  const [state, setState] = React.useState<TextOptions>(defaultTextOptions)
+  const [state, setState] = React.useState(defaultTextOptions)
   const { setActiveSubMenu } = useAppContext()
   const activeObject = useActiveObject()
   const editor = useEditor()
