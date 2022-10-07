@@ -18,7 +18,7 @@ export default function Home ({user}) {
         <title>Dashboard - Emotion Cards</title>
       </Head>
       <Layout>
-        <Dashboard/>
+        {/* <Dashboard/> */}
       </Layout>
     </>
   )
