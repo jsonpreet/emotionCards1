@@ -13,13 +13,13 @@ const Home = () => {
   const { setUser, setIsLoggedIn } = useAuthStore()
   console.log(user);
   useEffect(() => {
-    if (user !== null) {
+    if (user.user !== null) {
       setUser(user)
       setIsLoggedIn(true)
     } else {
       router.push('/login')
     }
-  }, [])
+  }, [user])
   return (
     <>
       <Head>
@@ -36,8 +36,8 @@ export default Home
 
 export const getServerSideProps = withPageAuth({
   redirectTo: '/login',
-  async getServerSideProps(ctx) {
-    const { data } = await supabaseServerClient(ctx).getUser('profiles').select('*');
-    return { props: { data } };
-  }
+  // async getServerSideProps(ctx) {
+  //   const { data } = await supabaseServerClient(ctx).getUser('profiles').select('*');
+  //   return { props: { data } };
+  // }
 });
