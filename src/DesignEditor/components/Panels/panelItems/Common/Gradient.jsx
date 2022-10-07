@@ -132,12 +132,11 @@ const Gradient = () => {
                       textAlign: "center",
                     }}>
                     <HexColorPicker onChange={(color) => handleGradientColorChange(0, color)} />
-                    <Input
-                      overrides={{ Input: { style: { textAlign: "center" } } }}
+                    <input
                       value={options.colors[0]}
                       onChange={(e) => handleGradientColorChange(0, (e.target).value)}
                       placeholder="#000000"
-                      clearOnEscape
+                      className='w-full border border-gray-300 rounded-md mt-2 shadow p-2' 
                     />
                   </div>
             </Popover.Panel>
@@ -172,12 +171,11 @@ const Gradient = () => {
                   textAlign: "center",
                 }} >
                 <HexColorPicker onChange={(color) => handleGradientColorChange(1, color)} />
-                <Input
-                  overrides={{ Input: { style: { textAlign: "center" } } }}
+                <input
                   value={options.colors[1]}
                   onChange={(e) => handleGradientColorChange(1, (e.target).value)}
                   placeholder="#000000"
-                  clearOnEscape
+                  className='w-full border border-gray-300 rounded-md mt-2 shadow p-2' 
                 />
               </div>
             </Popover.Panel>

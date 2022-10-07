@@ -2,6 +2,7 @@ import React from "react"
 import { HexColorPicker } from "react-colorful"
 import { useActiveObject, useEditor } from "@layerhub-io/react"
 import Slider from "rsuite/esm/Slider"
+import { Popover } from "@headlessui/react"
 
 
 const Outline = () => {
