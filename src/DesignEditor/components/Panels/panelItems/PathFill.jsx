@@ -3,7 +3,7 @@ import Scrollable from "@components/Scrollable"
 import { HexColorPicker } from "react-colorful"
 import { throttle } from "lodash"
 import { useActiveObject, useEditor } from "@layerhub-io/react"
-import { FaTrash } from "react-icons/fa"
+import { FaTimes } from "react-icons/fa"
 
 const PRESET_COLORS = [
   "#f44336",
@@ -47,7 +47,7 @@ const PathFill = () => {
         <div>Path Fill</div>
 
         <div style={{ cursor: "pointer", display: "flex" }}>
-          <FaTrash size={24} />
+          <FaTimes size={24} />
         </div>
       </div>
       <Scrollable>

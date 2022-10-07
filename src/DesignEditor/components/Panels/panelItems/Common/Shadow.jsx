@@ -1,6 +1,7 @@
 import React from "react"
 import { HexColorPicker } from "react-colorful"
 import { useActiveObject, useEditor } from "@layerhub-io/react"
+import Slider from "rsuite/esm/Slider"
 
 const Shadow = () => {
   const editor = useEditor()
@@ -107,56 +108,16 @@ const Shadow = () => {
       <div style={{ padding: "0 8px" }}>
         <div>
           <div style={{ fontSize: "14px" }}>Blur</div>
-          <Range
-            step={0.1}
-            values={[options.blur]}
-            onChange={({ value }) => handleChange("blur", value)}
-            renderTrack={({ props, children }) => (
-              <div
-                onMouseDown={props.onMouseDown}
-                onTouchStart={props.onTouchStart}
-                style={{
-                  ...props.style,
-                  height: "36px",
-                  display: "flex",
-                  width: "100%"
-                }}
-              >
-                <div
-                  ref={props.ref}
-                  style={{
-                    height: "5px",
-                    width: "100%",
-                    borderRadius: "4px",
-                    background: getTrackBackground({
-                      values: [zoom],
-                      colors: ["#548BF4", "#ccc"],
-                    }),
-                    alignSelf: "center"
-                  }}
-                >
-                  {children}
-                </div>
-              </div>
-            )}
-            renderThumb={({ props }) => (
-              <div
-                {...props}
-                style={{
-                  ...props.style,
-                  height: "22px",
-                  width: "22px",
-                  borderRadius: "100px",
-                  backgroundColor: "#548BF4",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  boxShadow: "none"
-                }}
-              >
-              </div>
-            )}
-          />
+          <div className="custom-slider">
+              <Slider
+                progress
+                min={0}
+                max={100}
+                marks='false'
+                value={Math.round(options.blur)}
+                onChange={({ value }) => handleChange("blur", value)}
+              />
+            </div>
         </div>
       </div>
 
@@ -164,110 +125,30 @@ const Shadow = () => {
         <div style={{ height: "10px" }} />
         <div style={{ padding: "0 8px" }}>
           <div style={{ fontSize: "14px" }}>Offset Y</div>
-          <Range
-            step={0.1}
-            values={[options.offsetY]}
-            onChange={({ value }) => handleChange("offsetY", value)}
-            renderTrack={({ props, children }) => (
-              <div
-                onMouseDown={props.onMouseDown}
-                onTouchStart={props.onTouchStart}
-                style={{
-                  ...props.style,
-                  height: "36px",
-                  display: "flex",
-                  width: "100%"
-                }}
-              >
-                <div
-                  ref={props.ref}
-                  style={{
-                    height: "5px",
-                    width: "100%",
-                    borderRadius: "4px",
-                    background: getTrackBackground({
-                      values: [zoom],
-                      colors: ["#548BF4", "#ccc"],
-                    }),
-                    alignSelf: "center"
-                  }}
-                >
-                  {children}
-                </div>
-              </div>
-            )}
-            renderThumb={({ props }) => (
-              <div
-                {...props}
-                style={{
-                  ...props.style,
-                  height: "22px",
-                  width: "22px",
-                  borderRadius: "100px",
-                  backgroundColor: "#548BF4",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  boxShadow: "none"
-                }}
-              >
-              </div>
-            )}
-          />
+            <div className="custom-slider">
+              <Slider
+                progress
+                min={0}
+                max={100}
+                marks='false'
+                value={Math.round(options.offsetY)}
+                onChange={({ value }) => handleChange("offsetY", value)}
+              />
+            </div>
         </div>
         <div style={{ padding: "0 8px" }}>
           <div>
             <div style={{ fontSize: "14px" }}>Offset X</div>
-          <Range
-            step={0.1}
-            values={[options.offsetX]}
-            onChange={({ value }) => handleChange("offsetX", value)}
-            renderTrack={({ props, children }) => (
-              <div
-                onMouseDown={props.onMouseDown}
-                onTouchStart={props.onTouchStart}
-                style={{
-                  ...props.style,
-                  height: "36px",
-                  display: "flex",
-                  width: "100%"
-                }}
-              >
-                <div
-                  ref={props.ref}
-                  style={{
-                    height: "5px",
-                    width: "100%",
-                    borderRadius: "4px",
-                    background: getTrackBackground({
-                      values: [zoom],
-                      colors: ["#548BF4", "#ccc"],
-                    }),
-                    alignSelf: "center"
-                  }}
-                >
-                  {children}
-                </div>
-              </div>
-            )}
-            renderThumb={({ props }) => (
-              <div
-                {...props}
-                style={{
-                  ...props.style,
-                  height: "22px",
-                  width: "22px",
-                  borderRadius: "100px",
-                  backgroundColor: "#548BF4",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  boxShadow: "none"
-                }}
-              >
-              </div>
-            )}
-          />
+            <div className="custom-slider">
+              <Slider
+                progress
+                min={0}
+                max={100}
+                marks='false'
+                value={Math.round(options.offsetX)}
+                onChange={({ value }) => handleChange("offsetX", value)}
+              />
+            </div>
           </div>
         </div>
       </div>

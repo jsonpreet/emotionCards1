@@ -70,7 +70,7 @@ const SignIn = () => {
               </button>
           </div>
           <div className='w-full full py-4 text-center'>
-              Don't have an account? <Link href="/register" passHerf><a className='font-bold hover:text-pink-600'>Sign up</a></Link> for free.
+              Don&apos;t have an account? <Link href="/register" passHerf><a className='font-bold hover:text-pink-600'>Sign up</a></Link> for free.
           </div>
         </div>
       </div>

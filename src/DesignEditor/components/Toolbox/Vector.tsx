@@ -47,7 +47,7 @@ const Vector = () => {
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
             {Object.keys(state.colorMap).map((c, index) => {
               return (
-                <Popover className="relative">
+                <Popover key={index} className="relative">
                   <Popover.Button><div>
                     <div
                       style={{

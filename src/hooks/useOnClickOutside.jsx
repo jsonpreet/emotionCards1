@@ -5,16 +5,10 @@ import useLatest from "use-latest"
 const MOUSEDOWN = "mousedown"
 const TOUCHSTART = "touchstart"
 
-type HandledEvents = [typeof MOUSEDOWN, typeof TOUCHSTART]
-type HandledEventsType = HandledEvents[number]
-type PossibleEvent = {
-  [Type in HandledEventsType]: HTMLElementEventMap[Type]
-}[HandledEventsType]
-type Handler = (event: PossibleEvent) => void
 
-const events: HandledEvents = [MOUSEDOWN, TOUCHSTART]
+const events = [MOUSEDOWN, TOUCHSTART]
 
-const getAddOptions = (event: HandledEventsType): AddEventListenerOptions | undefined => {
+const getAddOptions = (event) => {
   if (event === TOUCHSTART && arePassiveEventsSupported()) {
     return { passive: true }
   }
@@ -22,11 +16,7 @@ const getAddOptions = (event: HandledEventsType): AddEventListenerOptions | unde
 
 const currentDocument = typeof document !== "undefined" ? document : undefined
 
-const useOnClickOutside = (
-  ref: React.RefObject<HTMLElement>,
-  handler: Handler | null,
-  { document = currentDocument } = {}
-) => {
+const useOnClickOutside = ( ref, handler, { document = currentDocument } = {} ) => {
   if (typeof document === "undefined") {
     return
   }
@@ -38,8 +28,8 @@ const useOnClickOutside = (
       return
     }
 
-    const listener = (event: PossibleEvent) => {
-      if (!ref.current || !handlerRef.current || ref.current.contains(event.target as Node)) {
+    const listener = (event) => {
+      if (!ref.current || !handlerRef.current || ref.current.contains(event.target)) {
         return
       }
 

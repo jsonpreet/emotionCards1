@@ -1,4 +1,4 @@
-export default function (selection: any): string[] | null {
+export default function getSelectionType(selection: any): string[] | null {
   let types = []
   if (!selection) {
     return null

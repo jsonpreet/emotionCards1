@@ -1,6 +1,7 @@
 import React from "react"
 import { HexColorPicker } from "react-colorful"
 import { useActiveObject, useEditor } from "@layerhub-io/react"
+import Slider from "rsuite/esm/Slider"
 
 
 const Outline = () => {
@@ -55,12 +56,27 @@ const Outline = () => {
           }}
         >
           <div style={{ display: "flex", alignItems: "center" }}>
-            <Checkbox checked={options.enabled} onChange={(e) => handleChange("enabled", (e.target).checked)} />
+            <input type="checkbox" checked={options.enabled} onChange={(e) => handleChange("enabled", (e.target).checked)} />
             Outline
           </div>
-          <StatefulPopover
-            placement={PLACEMENT.bottomLeft}
-            content={
+          <Popover>
+            <Popover.Button>
+              <div>
+                <div
+                  style={{
+                    height: "28px",
+                    width: "28px",
+                    backgroundSize: "100% 100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                    backgroundColor: options.stroke,
+                  }}
+                />
+              </div>
+            </Popover.Button>
+            <Popover.Panel className="absolute p-4 bg-white shadow-md border border-gray-300 rounded-lg flex flex-col text-center gap-1">
               <div
                 style={{
                   padding: "1rem",
@@ -73,32 +89,15 @@ const Outline = () => {
                 }}
               >
                 <HexColorPicker onChange={(color) => handleChange("stroke", color)} />
-                <Input
-                  overrides={{ Input: { style: { textAlign: "center" } } }}
+                <input
                   value={options.stroke}
                   onChange={(e) => handleChange("color", (e.target).value)}
                   placeholder="#000000"
-                  clearOnEscape
+                  className='w-full border border-gray-300 rounded-md mt-2 shadow p-2' 
                 />
               </div>
-            }
-            accessibilityType="tooltip"
-          >
-            <div>
-              <div
-                style={{
-                  height: "28px",
-                  width: "28px",
-                  backgroundSize: "100% 100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer",
-                  backgroundColor: options.stroke,
-                }}
-              />
-            </div>
-          </StatefulPopover>
+            </Popover.Panel>
+          </Popover>
         </div>
       </div>
       <div style={{ height: "10px" }} />
@@ -106,28 +105,16 @@ const Outline = () => {
       <div style={{ padding: "0 8px" }}>
         <div>
           <div style={{ fontSize: "14px" }}>Size</div>
-          <Slider
-            overrides={{
-              InnerThumb: () => null,
-              ThumbValue: () => null,
-              TickBar: () => null,
-              Thumb: {
-                style: {
-                  height: "12px",
-                  width: "12px",
-                  paddingLeft: 0,
-                },
-              },
-              Track: {
-                style: {
-                  paddingLeft: 0,
-                  paddingRight: 0,
-                },
-              },
-            }}
-            value={[options.strokeWidth]}
-            onChange={({ value }) => handleChange("strokeWidth", value[0])}
-          />
+          <div className="custom-slider">
+            <Slider
+              progress
+              min={0}
+              max={100}
+              marks='false'
+              value={Math.round(options.strokeWidth)}
+              onChange={({ value }) => handleChange("strokeWidth", value)}
+            />
+          </div>
         </div>
       </div>
     </div>
