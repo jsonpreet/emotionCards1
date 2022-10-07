@@ -1,15 +1,7 @@
 import Head from "next/head"
-import { useRouter } from 'next/router'
 import { SignIn } from '@app/components/auth'
-import { useUser, useSessionContext } from '@supabase/auth-helpers-react';
-import { useEffect } from "react"
 
 const Login = () => {
-  const router = useRouter()
-  const user = useUser();
-  useEffect(() => {
-    if (user) router.push('/')
-  }, [user])
   return (
     <>
       <Head>

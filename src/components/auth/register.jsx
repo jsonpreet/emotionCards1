@@ -15,24 +15,28 @@ const SignUp = () => {
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
-    const user = useUser();
+    const [user, setUser] = useState('')
+    const [message, setMessage] = useState('')
 
     const handleLogin = async (email, password, name) => {
-    try {
         setLoading(true)
         const { data:{ user: createdUser }, error } = await supabaseClient.auth.signUp({ email, password, options: { data: { name: name } } })
         console.log(data), console.log(error)
-        if (error) throw error
-        setSuccess(true)
-        setError(false)
-    } catch (error) {
-        setSuccess(false)
-        console.log(error.error_description || error.message)
-        setErrorMsg(error.message)
-        setError(true);
-    } finally {
-        setLoading(false)
-    }
+        if (error) {
+            setError(true)
+            setErrorMsg({ type: 'error', content: error.message });
+        } else {
+            setError(false)
+            if (createdUser) {
+                setSuccess(true)
+                setUser(createdUser);
+            } else {
+                setMessage({
+                    type: 'note',
+                    content: 'Check your email for the confirmation link.'
+                });
+            }
+        }
     }
 
     useEffect(() => {

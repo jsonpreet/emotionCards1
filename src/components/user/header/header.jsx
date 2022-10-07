@@ -5,13 +5,13 @@ import Link from 'next/link'
 import { Menu, Transition, Switch } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { classNames } from '@app/lib/functions'
-import { supabaseClient } from '@supabase/supabase-auth-helpers/nextjs'
-import { useAuthStore } from '@app/stores/auth'
+import { useUser, useSessionContext } from '@supabase/auth-helpers-react';
 
 const Header = () => {
   const router = useRouter()
 
-  const { user } = useAuthStore()
+  const user = useUser();
+  const { supabaseClient } = useSessionContext();
 
   const [enabled, setEnabled] = useState(false)
   const { theme, setTheme } = useTheme()
@@ -29,8 +29,8 @@ const Header = () => {
     }
   }
 
-  const logout = () => {
-    supabaseClient.auth.signOut()
+  const logout = async() => {
+    await supabaseClient.auth.signOut()
     router.push('/')
   }
   return (
@@ -62,7 +62,7 @@ const Header = () => {
                 <Menu.Button className="inline-flex w-full justify-center items-center shadow-none text-sm font-medium text-gray-700 focus:outline-none">
                    <div className="flex items-center justify-center mr-2 w-7 h-7 bg-white rounded-full shadow-lg">
                         <img className="w-6 h-6 rounded-full" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="avatar" />
-                    </div> <span>Hey, {user?.user?.user_metadata?.name || `User`}</span>
+                    </div> <span>Hey, {user?.user_metadata?.name || `User`}</span>
                   <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
                 </Menu.Button>
               </div>

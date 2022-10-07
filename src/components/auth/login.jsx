@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useUser, useSessionContext } from '@supabase/auth-helpers-react';
 import { Spinner } from '@app/lib/icons'
 import { Gradient1, Gradient2 } from '@components/ui/backgrounds'
 import Link from 'next/link'
+import { useRouter } from 'next/router';
 
 const SignIn = () => {
   const [loading, setLoading] = useState(false)
@@ -12,11 +13,13 @@ const SignIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { supabaseClient } = useSessionContext();
+  const user = useUser();
+  const router = useRouter()
 
   const handleLogin = async (email, password) => {
     try {
       setLoading(true)
-      const { data, error } = await supabaseClient.auth.signIn({ email, password })
+      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password })
       if (error) throw error
       setSuccess(true)
       setError(false)
@@ -29,6 +32,11 @@ const SignIn = () => {
       setLoading(false)
     }
   }
+  useEffect(() => {
+    if (user) {
+      router.replace('/');
+    }
+  }, [user]);
 
   return (
     <>
