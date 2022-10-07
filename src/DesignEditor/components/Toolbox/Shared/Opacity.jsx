@@ -1,9 +1,8 @@
 import React from "react"
-import { ILayer } from "@layerhub-io/types"
 import { useActiveObject, useEditor } from "@layerhub-io/react"
 import OpacityIcon from "@components/Icons/Opacity."
 import { Popover } from '@headlessui/react'
-import Slider from 'rsuite/Slider'
+import ReactSlider from "react-slider";
 
 const Opacity = () => {
   const editor = useEditor()
@@ -39,11 +38,9 @@ const Opacity = () => {
           </div>
 
           <div className="custom-slider">
-            <Slider
-              progress
+            <ReactSlider
               min={0}
               max={100}
-              marks='false'
               value={Math.round(opacity)}
               onChange={(value) => onChange(value)}
             />

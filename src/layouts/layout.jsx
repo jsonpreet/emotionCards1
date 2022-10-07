@@ -4,7 +4,7 @@ import { Sidebar } from '@app/components/user/sidebar'
 const Layout = ({children}) => {
     return (
         <>
-            <div className='min-h-screen mx-auto flex-col flex bg-gray-200 text-black dark:bg-black dark:text-white'>
+            <div className='min-h-screen mx-auto flex-col flex bg-gray-200 text-black'>
                 <Header />
                 <div className='content w-full flex flex-row'>
                     <Sidebar />

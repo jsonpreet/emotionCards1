@@ -1,7 +1,7 @@
 import React from "react"
 import { HexColorPicker } from "react-colorful"
 import { useActiveObject, useEditor } from "@layerhub-io/react"
-import Slider from "rsuite/esm/Slider"
+import ReactSlider from "react-slider";
 import { Popover } from "@headlessui/react"
 
 
@@ -107,11 +107,9 @@ const Outline = () => {
         <div>
           <div style={{ fontSize: "14px" }}>Size</div>
           <div className="custom-slider">
-            <Slider
-              progress
+            <ReactSlider
               min={0}
               max={100}
-              marks='false'
               value={Math.round(options.strokeWidth)}
               onChange={({ value }) => handleChange("strokeWidth", value)}
             />

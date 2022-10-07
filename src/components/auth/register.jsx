@@ -43,7 +43,7 @@ const SignUp = () => {
                 <div className='w-full pt-4'>
                     <label className='mb-px text-sm hidden font-semibold md:text-base dark:text-white'>Name</label>
                     <input
-                    className="duration-200 border-gray-300 px-4 py-[10px] rounded-full my-1 outline-none w-full dark:bg-gray-900 dark:text-white dark:border-gray-600 border dark:placeholder-gray-500 dark:hover:border-blue-700 dark:focus:border-blue-700 hover:border-blue-400 focus:border-blue-400"
+                    className="duration-200 border-gray-300 bg-white px-4 py-[10px] rounded-full my-1 outline-none w-full border hover:border-blue-400 focus:border-blue-400"
                     type="text"
                     placeholder="Full Name"
                     value={name}
@@ -53,7 +53,7 @@ const SignUp = () => {
                 <div className='w-full pt-4'>
                     <label className='mb-px text-sm hidden font-semibold md:text-base dark:text-white'>Email</label>
                     <input
-                    className="duration-200 border-gray-300 px-4 py-[10px] rounded-full my-1 outline-none w-full dark:bg-gray-900 dark:text-white dark:border-gray-600 border dark:placeholder-gray-500 dark:hover:border-blue-700 dark:focus:border-blue-700 hover:border-blue-400 focus:border-blue-400"
+                    className="duration-200 border-gray-300 bg-white px-4 py-[10px] rounded-full my-1 outline-none w-full border hover:border-blue-400 focus:border-blue-400"
                     type="email"
                     placeholder="Email Address"
                     value={email}
@@ -63,7 +63,7 @@ const SignUp = () => {
                 <div className='w-full pt-4'>
                     <label className='mb-px text-sm hidden font-semibold md:text-base dark:text-white'>Password</label>
                     <input
-                    className="duration-200 border-gray-300 px-4 py-[10px] rounded-full my-1 outline-none w-full dark:bg-gray-900 dark:text-white dark:border-gray-600 border dark:placeholder-gray-500 dark:hover:border-blue-700 dark:focus:border-blue-700 hover:border-blue-400 focus:border-blue-400"
+                    className="duration-200 border-gray-300 bg-white px-4 py-[10px] rounded-full my-1 outline-none w-full border hover:border-blue-400 focus:border-blue-400"
                     type="password"
                     placeholder="Password"
                     value={password}

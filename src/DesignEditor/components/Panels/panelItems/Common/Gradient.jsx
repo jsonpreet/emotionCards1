@@ -1,7 +1,7 @@
 import React from "react"
 import { HexColorPicker } from "react-colorful"
 import { useActiveObject, useEditor } from "@layerhub-io/react"
-import Slider from "rsuite/esm/Slider"
+import ReactSlider from "react-slider";
 import { Popover } from "@headlessui/react"
 
 
@@ -188,14 +188,11 @@ const Gradient = () => {
         <div>
           <div style={{ fontSize: "14px" }}>Direction</div>
           <div className=' custom-slider' style={{ width: "200px", position: "relative", }}>
-            <Slider
-              progress
+            <ReactSlider
               step={1}
               defaultValue={[options.angle]}
               min={zoomMin}
               max={zoomMax}
-              vertical={false}
-              marks="false"
               value={[options.angle]}
               onChange={(value) => handleChange("angle", value)}
             />

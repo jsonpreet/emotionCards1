@@ -20,7 +20,7 @@ import { FONT_SIZES, SAMPLE_FONTS } from "@app/constants/editor"
 import { getTextProperties } from "../../utils/text"
 import { loadFonts } from "@app/utils/fonts"
 import Scrollbar from "@layerhub-io/react-custom-scrollbar"
-import Slider from 'rsuite/Slider'
+import ReactSlider from "react-slider";
 
 const initialOptions = {
   family: "CoreLang",
@@ -367,11 +367,9 @@ const TextSpacing = () => {
           </div>
 
           <div className="custom-slider">
-            <Slider
-              progress
+            <ReactSlider
               min={0}
               max={100}
-              marks='false'
               value={Math.round(state.lineHeight)}
               onChange={({ value }) => handleChange("lineHeight", value)}
             />
@@ -387,11 +385,9 @@ const TextSpacing = () => {
           </div>
         </div>
         <div className="custom-slider">
-          <Slider
-            progress
+          <ReactSlider
             min={-20}
             max={100}
-            marks={false}
             value={Math.round(state.charSpacing)}
             onChange={({ value }) => handleChange("charSpacing", value)}
           />

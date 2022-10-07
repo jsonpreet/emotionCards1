@@ -41,7 +41,7 @@ const SignIn = () => {
           <div className='w-full pt-4'>
               <label className='mb-px text-sm hidden font-semibold md:text-base dark:text-white'>Email</label>
               <input
-              className="duration-200 border-gray-300 px-4 py-[10px] rounded-full my-1 outline-none w-full dark:bg-gray-900 dark:text-white dark:border-gray-600 border dark:placeholder-gray-500 dark:hover:border-blue-700 dark:focus:border-blue-700 hover:border-blue-400 focus:border-blue-400"
+              className="duration-200 border-gray-300 bg-white px-4 py-[10px] rounded-full my-1 outline-none w-full border hover:border-blue-400 focus:border-blue-400"
               type="email"
               placeholder="Email Address"
               value={email}
@@ -51,7 +51,7 @@ const SignIn = () => {
           <div className='w-full pt-4'>
               <label className='mb-px text-sm hidden font-semibold md:text-base dark:text-white'>Password</label>
               <input
-              className="duration-200 border-gray-300 px-4 py-[10px] rounded-full my-1 outline-none w-full dark:bg-gray-900 dark:text-white dark:border-gray-600 border dark:placeholder-gray-500 dark:hover:border-blue-700 dark:focus:border-blue-700 hover:border-blue-400 focus:border-blue-400"
+              className="duration-200 border-gray-300 bg-white px-4 py-[10px] rounded-full my-1 outline-none w-full border hover:border-blue-400 focus:border-blue-400"
               type="password"
               placeholder="Password"
               value={password}
@@ -75,7 +75,7 @@ const SignIn = () => {
         </div>
       </div>
       {success && <div className='w-full bg-green-700 relative max-w-md z-10 rounded-full mt-10 px-4 py-3 text-white text-center'>
-        <p className='text-sm'>Check your email for the login link!</p>
+        <p className='text-sm'>Sign In Successfully!</p>
       </div>}
       {error && <div className='w-full bg-red-700 rounded-full max-w-md relative z-10 mt-10 px-4 py-3 text-white text-center'>
         <p className='text-sm'>{errorMsg || `Something went wrong. Please try again.`}</p>

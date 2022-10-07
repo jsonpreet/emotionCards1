@@ -1,7 +1,7 @@
 import React from "react"
 import { HexColorPicker } from "react-colorful"
 import { useActiveObject, useEditor } from "@layerhub-io/react"
-import Slider from "rsuite/esm/Slider"
+import ReactSlider from "react-slider";
 
 const Shadow = () => {
   const editor = useEditor()
@@ -109,11 +109,9 @@ const Shadow = () => {
         <div>
           <div style={{ fontSize: "14px" }}>Blur</div>
           <div className="custom-slider">
-              <Slider
-                progress
+              <ReactSlider
                 min={0}
                 max={100}
-                marks='false'
                 value={Math.round(options.blur)}
                 onChange={({ value }) => handleChange("blur", value)}
               />
@@ -126,11 +124,9 @@ const Shadow = () => {
         <div style={{ padding: "0 8px" }}>
           <div style={{ fontSize: "14px" }}>Offset Y</div>
             <div className="custom-slider">
-              <Slider
-                progress
+              <ReactSlider
                 min={0}
                 max={100}
-                marks='false'
                 value={Math.round(options.offsetY)}
                 onChange={({ value }) => handleChange("offsetY", value)}
               />
@@ -140,11 +136,9 @@ const Shadow = () => {
           <div>
             <div style={{ fontSize: "14px" }}>Offset X</div>
             <div className="custom-slider">
-              <Slider
-                progress
+              <ReactSlider
                 min={0}
                 max={100}
-                marks='false'
                 value={Math.round(options.offsetX)}
                 onChange={({ value }) => handleChange("offsetX", value)}
               />

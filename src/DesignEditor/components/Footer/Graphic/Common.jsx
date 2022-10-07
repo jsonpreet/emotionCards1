@@ -1,7 +1,7 @@
 import React from "react"
 import Icons from "@components/Icons"
 import { useEditor, useZoomRatio } from "@layerhub-io/react"
-import Slider from 'rsuite/Slider'
+ import ReactSlider from "react-slider";
 
 const Common = () => {
   const zoomMin = 10
@@ -46,14 +46,13 @@ const Common = () => {
           <Icons.RemoveCircleOutline size={24} />
         </button>
         <div className=' custom-slider' style={{ width: "200px", position: "relative", }}>
-        <Slider
+        <ReactSlider
           progress
           step={1}
           defaultValue={zoom}
           min={zoomMin}
           max={zoomMax}
           vertical={false}
-          marks="false"
           value={zoom}
           onChange={(value) => handleChange("zoomRatio", value)}
         />
