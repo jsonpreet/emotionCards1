@@ -24,4 +24,4 @@ export default function Home ({user}) {
   )
 }
 
-export const getServerSideProps = withPageAuth({ redirectTo: '/login' });
+// export const getServerSideProps = withPageAuth({ redirectTo: '/login' });
