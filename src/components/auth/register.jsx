@@ -3,8 +3,11 @@ import { supabase } from '@lib/supabaseClient'
 import { Spinner } from '@app/lib/icons'
 import { Gradient1, Gradient2 } from '@components/ui/backgrounds'
 import Link from 'next/link'
+import { User } from '@supabase/supabase-js';
+import { useUser, useSessionContext } from '@supabase/auth-helpers-react';
 
 const SignUp = () => {
+    const { supabaseClient } = useSessionContext();
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const [errorMsg, setErrorMsg] = useState('')
@@ -12,11 +15,12 @@ const SignUp = () => {
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
+    const user = useUser();
 
     const handleLogin = async (email, password, name) => {
     try {
         setLoading(true)
-        const { data, error } = await supabase.auth.signUp({ email, password, options: { data: { name: name } } })
+        const { data:{ user: createdUser }, error } = await supabaseClient.auth.signUp({ email, password, options: { data: { name: name } } })
         console.log(data), console.log(error)
         if (error) throw error
         setSuccess(true)
@@ -30,6 +34,12 @@ const SignUp = () => {
         setLoading(false)
     }
     }
+
+    useEffect(() => {
+        if (user) {
+        router.replace('/');
+        }
+    }, [user]);
 
     return (
     <>

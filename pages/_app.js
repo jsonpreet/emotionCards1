@@ -1,8 +1,8 @@
 
 import NextNProgress from 'nextjs-progressbar'
 import { ThemeProvider } from "next-themes"
-import { UserProvider } from '@supabase/supabase-auth-helpers/react'
-import { supabaseClient } from '@supabase/supabase-auth-helpers/nextjs'
+import { SessionContextProvider } from '@supabase/auth-helpers-react';
+import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { Provider as ScenifyProvider } from "@layerhub-io/react"
 import { AppProvider } from "@app/contexts/AppContext"
 import { DesignEditorProvider } from "@app/contexts/DesignEditor"
@@ -12,15 +12,18 @@ import i18next from "i18next"
 import "@app/translations"
 import '@styles/globals.css'
 import '@styles/app.scss'
+import { useState } from 'react';
 
 
 function MyApp({ Component, pageProps }) {
-  
+  const [supabaseClient] = useState(() =>
+    createBrowserSupabaseClient()
+  );
   return (
     <>
       <NextNProgress color="#cb0038" showOnShallow={true} />
       <ThemeProvider enableSystem={true} attribute="class">
-        <UserProvider supabaseClient={supabaseClient}>
+        <SessionContextProvider supabaseClient={supabaseClient}>
           <DesignEditorProvider>
             <TimerProvider>
               <AppProvider>
@@ -30,7 +33,7 @@ function MyApp({ Component, pageProps }) {
               </AppProvider>
             </TimerProvider>
           </DesignEditorProvider>
-        </UserProvider>
+        </SessionContextProvider>
       </ThemeProvider>
     </>
   );

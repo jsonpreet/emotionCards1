@@ -2,8 +2,8 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { Layout } from '@app/layouts'
 import { Dashboard } from '@app/components/user/dashboard'
-import { useUser } from '@supabase/supabase-auth-helpers/react'
-import { supabaseServerClient, withPageAuth } from '@supabase/supabase-auth-helpers/nextjs'
+import { User } from '@supabase/supabase-js';
+import { withPageAuth } from '@supabase/auth-helpers-nextjs';
 import { useEffect } from 'react'
 import { useAuthStore } from '@app/stores/auth'
 

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { supabaseClient } from '@supabase/supabase-auth-helpers/nextjs'
+import { useUser, useSessionContext } from '@supabase/auth-helpers-react';
 import { Spinner } from '@app/lib/icons'
 import { Gradient1, Gradient2 } from '@components/ui/backgrounds'
 import Link from 'next/link'
@@ -11,6 +11,7 @@ const SignIn = () => {
   const [success, setSuccess] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { supabaseClient } = useSessionContext();
 
   const handleLogin = async (email, password) => {
     try {
