@@ -7,7 +7,7 @@ import { supabaseServerClient, withPageAuth } from '@supabase/supabase-auth-help
 import { useEffect } from 'react'
 import { useAuthStore } from '@app/stores/auth'
 
-const Home = () => {
+export default function Home () {
   const { user, error } = useUser();
   const router = useRouter()
   const { setUser, setIsLoggedIn } = useAuthStore()
@@ -31,8 +31,6 @@ const Home = () => {
     </>
   )
 }
-
-export default Home
 
 export const getServerSideProps = withPageAuth({
   redirectTo: '/login',
