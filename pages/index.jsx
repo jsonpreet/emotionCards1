@@ -19,7 +19,7 @@ const Home = () => {
     } else {
       router.push('/login')
     }
-  }, [user])
+  }, [])
   return (
     <>
       <Head>
