@@ -1,6 +1,6 @@
-import { IFontFamily } from "~/interfaces/editor"
+import { IFontFamily } from "@app/interfaces/editor"
 import { createAsyncThunk, createAction } from "@reduxjs/toolkit"
-import api from "~/services/api"
+import api from "@app/services/api"
 
 export const setFonts = createAction<IFontFamily[]>("fonts/setFonts")
 

@@ -1,3 +1,3 @@
-import { RootState } from "~/store/rootReducer";
+import { RootState } from "@app/store/rootReducer";
 
 export const selectFonts = (state: RootState) => state.fonts.fonts;

@@ -1,3 +1,3 @@
-import { RootState } from "~/store/rootReducer"
+import { RootState } from "@app/store/rootReducer"
 
 export const selectPixabayResources = (state: RootState) => state.resources.pixabay
