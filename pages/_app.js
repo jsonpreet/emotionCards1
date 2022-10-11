@@ -22,9 +22,9 @@ function MyApp({ Component, pageProps }) {
   );
   return (
     <>
-      <NextNProgress color="#cb0038" showOnShallow={true} />
-      <ThemeProvider enableSystem={true} attribute="class">
+      {/* <ThemeProvider enableSystem={true} attribute="class"> */}
         <SessionContextProvider supabaseClient={supabaseClient}>
+          <NextNProgress color="#cb0038" showOnShallow={true} />
           <NextUIProvider>
           <DesignEditorProvider>
             <TimerProvider>
@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }) {
             </DesignEditorProvider>
             </NextUIProvider>
         </SessionContextProvider>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </>
   );
 }
