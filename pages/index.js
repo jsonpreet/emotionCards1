@@ -4,15 +4,16 @@ import { Layout } from '@app/layouts'
 import { Dashboard } from '@app/components/user/dashboard'
 import { withPageAuth } from '@supabase/auth-helpers-nextjs';
 import { useAuthStore } from '@app/stores/auth'
+import { useEffect } from 'react';
 
 export default function Home () {
   const router = useRouter()
   const { setUser, setIsLoggedIn } = useAuthStore()
-  useEffect(() => {
-    if (!user) {
-      router.replace('/login');
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.replace('/login');
+  //   }
+  // }, [user]);
   return (
     <>
       <Head>
@@ -25,4 +26,4 @@ export default function Home () {
   )
 }
 
-// export const getServerSideProps = withPageAuth({ redirectTo: '/login' });
+export const getServerSideProps = withPageAuth({ redirectTo: '/login', authRequired: true });
