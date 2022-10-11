@@ -5,9 +5,11 @@ import { Dashboard } from '@app/components/user/dashboard'
 import { withPageAuth } from '@supabase/auth-helpers-nextjs';
 import { useAuthStore } from '@app/stores/auth'
 import { useEffect } from 'react';
+import { useUser } from '@supabase/auth-helpers-react';
 
 export default function Home () {
   const router = useRouter()
+  const user = useUser();
   const { setUser, setIsLoggedIn } = useAuthStore()
   useEffect(() => {
     if (!user) {
