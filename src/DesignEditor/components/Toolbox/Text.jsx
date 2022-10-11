@@ -21,6 +21,9 @@ import { getTextProperties } from "../../utils/text"
 import { loadFonts } from "@app/utils/fonts"
 import Scrollbar from "@layerhub-io/react-custom-scrollbar"
 import ReactSlider from "react-slider";
+import { Tooltip } from "@nextui-org/react";
+import { useRef } from "react"
+import useOnClickOutside from "@app/hooks/useOnClickOutside"
 
 const initialOptions = {
   family: "CoreLang",
@@ -201,34 +204,46 @@ const Text = () => {
         </div>
         <TextFontSize />
         <div className="flex flex-row justify-between items-center">
-          <button className="px-1" onClick={() => setActiveSubMenu("TextFill")}>
-            <TextColor color={state.color} size={22} />
-          </button>
+          <Tooltip content="Text Color" color="invert"  placement="bottom">
+            <button className="px-1" onClick={() => setActiveSubMenu("TextFill")}>
+              <TextColor color={state.color} size={22} />
+            </button>
+          </Tooltip>
+          
+          <Tooltip content="Bold" color="invert"  placement="bottom">
+            <button
+              className="px-1"
+              style={{ ...(!state.bold && { color: "rgb(169,169,169)" }) }}
+              disabled={!state.styleOptions.hasBold}
+              onClick={makeBold}>
+              <Bold size={20} />
+            </button>
+          </Tooltip>
+          
+          <Tooltip content="Italic" color="invert"  placement="bottom">
+            <button
+              className="px-1"
+              style={{ ...(!state.italic && { color: "rgb(169,169,169)" }) }}
+              disabled={!state.styleOptions.hasItalic}
+              onClick={makeItalic}>
+              <Italic size={20} />
+            </button>
+          </Tooltip>  
 
-          <button
-            className="px-1"
-            style={{ ...(!state.bold && { color: "rgb(169,169,169)" }) }}
-            disabled={!state.styleOptions.hasBold}
-            onClick={makeBold}>
-            <Bold size={20} />
-          </button>
+          
+          <Tooltip content="Underline" color="invert"  placement="bottom">
+            <button
+              className="px-1"
+              style={{ ...(!state.underline && { color: "rgb(169,169,169)" }) }}
+              onClick={makeUnderline}>
+              <Underline size={24} />
+            </button>
+          </Tooltip>
 
-          <button
-            className="px-1"
-            style={{ ...(!state.italic && { color: "rgb(169,169,169)" }) }}
-            disabled={!state.styleOptions.hasItalic}
-            onClick={makeItalic}>
-            <Italic size={20} />
-          </button>
-
-          <button
-            className="px-1"
-            style={{ ...(!state.underline && { color: "rgb(169,169,169)" }) }}
-            onClick={makeUnderline}>
-            <Underline size={24} />
-          </button>
-
-          <TextLetterCase />
+          
+          <Tooltip content="LetterCase" color="invert"  placement="bottom">
+            <TextLetterCase />
+          </Tooltip>
 
           <div style={{ width:"1px", height:"24px", backgroundColor:"rgb(213,213,213)", margin:"0 4px" }} />
 
@@ -240,9 +255,11 @@ const Text = () => {
 
           <div style={{ width: "1px", height: "24px", backgroundColor: "rgb(213,213,213)", margin: "0 4px" }} />
           
-          <button className='font-medium text-md' onClick={() => setActiveSubMenu("TextEffects")}>
-            Effects
-          </button>
+          <Tooltip content="Effects" color="invert"  placement="bottom">
+            <button className='font-medium text-md' onClick={() => setActiveSubMenu("TextEffects")}>
+              Effects
+            </button>
+          </Tooltip>
         </div>
       </div>
       <Common />
@@ -251,9 +268,14 @@ const Text = () => {
 }
 
 const TextFontSize = () => {
+  const ref = useRef(null)
   const editor = useEditor()
   const activeObject = useActiveObject()
   const [value, setValue] = React.useState(12)
+  const [dropDown, setDropDown] = React.useState(false)
+  useOnClickOutside(ref, () => {
+    setDropDown(false)
+  })
 
   React.useEffect(() => {
     // @ts-ignore
@@ -268,24 +290,25 @@ const TextFontSize = () => {
   }
 
   return (
-    <Popover className="relative">
-      <Popover.Button className='flex flex-row justify-between rounded items-center border border-gray-400 w-[60px] font-semibold h-[30px]'>
+    <div className="relative" ref={ref}>
+      <div className='flex flex-row justify-between rounded items-center border border-gray-400 w-[80px] font-semibold h-[30px]'>
         <input
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          onClick={() => setDropDown(true)}
           type="number"
-          className="font-semibold h-[28px] px-2 ml-[1px] w-[40px]"
+          className="bg-white font-semibold h-[28px] px-2 ml-[1px] w-[60px]"
         />
         <ChevronDown size={14} className='mr-2' />
-      </Popover.Button>
-      <Popover.Panel className="absolute top-8 z-10 bg-white shadow-lg rounded">
+      </div>
+      {dropDown && <div className="absolute top-8 z-10 bg-white shadow-lg rounded">
         <Scrollbar style={{ height: "320px", width: "90px" }}>
           <div className="bg-white py-2">
             {FONT_SIZES.map((size, index) => (
               <div
                 onClick={() => {
                   onChange(size)
-                  close()
+                  setDropDown(false)
                 }}
                 className="cursor-pointer h-[32px] font-medium px-3 items-center hover:bg-gray-200 flex"
                 key={index}>
@@ -294,8 +317,8 @@ const TextFontSize = () => {
             ))}
           </div>
         </Scrollbar>
-      </Popover.Panel>
-    </Popover>
+      </div>}
+    </div>
   )
 }
 
@@ -335,27 +358,27 @@ const TextSpacing = () => {
   const handleChange = (type, value) => {
     if (editor) {
       if (type === "charSpacing") {
-        setState({ ...state, [type]: value[0] })
+        setState({ ...state, [type]: value })
 
         // @ts-ignore
         editor.objects.update({
-          [type]: value[0] * 10,
+          [type]: value * 10,
         })
       } else {
-        setState({ ...state, [type]: value[0] })
+        setState({ ...state, [type]: value })
         // @ts-ignore
 
         editor.objects.update({
-          [type]: value[0] / 10,
+          [type]: value / 10,
         })
       }
     }
   }
   return (
     <Popover className="relative px-1">
-      <Popover.Button className='flex items-center justify-center'><Spacing size={24} /></Popover.Button>
+      <Popover.Button className='flex items-center justify-center'><Tooltip content="Spacing" color="invert" placement="bottom"><Spacing size={24} /></Tooltip></Popover.Button>
       <Popover.Panel className="absolute z-10 bg-white w-[300px] p-4 rounded shadow-lg">
-        <div>
+        <div className="flex flex-col mb-3">
           <div className="flex flex-row justify-between items-center mb-3">
             <div className="text-black text-md font-medium">Line height</div>
             <div className="w-[60px]">
@@ -375,7 +398,7 @@ const TextSpacing = () => {
             />
           </div>
         </div>
-        <div className="flex flex-row justify-between items-center my-3">
+        <div className="flex flex-row justify-between items-center mb-3">
           <div className="text-black text-md font-medium">Char spacing</div>
             <div className="w-[60px]">
             <input className="w-full border text-center border-gray-300 py-1"
@@ -418,27 +441,27 @@ const TextAlign = () => {
 
   return (
     <Popover className="relative px-1">
-      <Popover.Button className='flex items-center justify-center'><TextAlignCenter size={24} /></Popover.Button>
+      <Popover.Button className='flex items-center justify-center'><Tooltip content="Align" color="invert" placement="bottom"><TextAlignCenter size={24} /></Tooltip></Popover.Button>
       <Popover.Panel className="absolute z-10 bg-white px-2 py-2 w-[200px] shadow-lg rounded border border-gray-300">
         <RadioGroup value={state.align} onChange={handleChange} className='flex justify-between items-center flex-row'>
           <RadioGroup.Option value="left" className='hover:bg-gray-200 cursor-pointer p-1 rounded'>
             {({ checked }) => (
-              <span className={checked ? 'bg-blue-200 p-1 rounded' : ''}><TextAlignLeft size={24} /></span>
+              <span className={checked ? 'bg-blue-200 p-1 rounded' : ''}><Tooltip content="Align Left" color="invert" placement="bottom"><TextAlignLeft size={24} /></Tooltip></span>
             )}
           </RadioGroup.Option>
           <RadioGroup.Option value="center" className='hover:bg-gray-200 cursor-pointer p-1 rounded'>
             {({ checked }) => (
-              <span className={checked ? 'bg-blue-200' : ''}><TextAlignCenter size={24} /></span>
+              <span className={checked ? 'bg-blue-200' : ''}><Tooltip content="Align Center" color="invert" placement="bottom"><TextAlignCenter size={24} /></Tooltip></span>
             )}
           </RadioGroup.Option>
           <RadioGroup.Option value="right" className='hover:bg-gray-200 cursor-pointer p-1 rounded'>
             {({ checked }) => (
-              <span className={checked ? 'bg-blue-200' : ''}><TextAlignRight size={24} /></span>
+              <span className={checked ? 'bg-blue-200' : ''}><Tooltip content="Align Right" color="invert" placement="bottom"><TextAlignRight size={24} /></Tooltip></span>
             )}
           </RadioGroup.Option>
           <RadioGroup.Option value="justify" className='hover:bg-gray-200 cursor-pointer p-1 rounded'>
             {({ checked }) => (
-              <span className={checked ? 'bg-blue-200' : ''}><TextAlignJustify size={24} /></span>
+              <span className={checked ? 'bg-blue-200' : ''}><Tooltip content="Align Justify" color="invert" placement="bottom"><TextAlignJustify size={24} /></Tooltip></span>
             )}
           </RadioGroup.Option>
         </RadioGroup>

@@ -6,7 +6,7 @@ import { useEditor } from "@layerhub-io/react"
 import useSetIsSidebarOpen from "@app/hooks/useSetIsSidebarOpen"
 
 const Graphics = () => {
-  const inputFileRef = React.useRef<HTMLInputElement>(null)
+  const inputFileRef = React.useRef(null)
 
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()

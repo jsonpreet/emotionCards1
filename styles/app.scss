@@ -104,14 +104,14 @@ input[type="number"] {
     max-height: 740px;
 }
 
-// .canvas-container > .upper-canvas {
-//     display: none!important;
-// }
+.canvas-container > .upper-canvas {
+    display: none!important;
+}
 
-// .canvas-container > .canvas-container > .upper-canvas {
-//     display: block!important;
-//     top: 0!important;
-// }
+.canvas-container > .canvas-container > .upper-canvas {
+    display: block!important;
+    top: 0!important;
+}
 
 .custom-slider {
   .rs-slider-handle {
@@ -138,6 +138,26 @@ input[type="number"] {
       height: 2px;
       background-color: #000;
     }
+  }
+
+  .track {
+      height: 2px;
+      background: black;
+  }
+
+  .track-1 {
+      background: #f2f2f5;
+  }
+
+  .thumb {
+      top:-5px;
+      width: 12px;
+      height: 12px;
+      border-radius: 100%;
+      text-align: center;
+      background-color: black;
+      cursor: pointer;
+      box-sizing: border-box;
   }
 
 }

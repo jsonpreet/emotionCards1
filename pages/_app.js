@@ -8,6 +8,7 @@ import { AppProvider } from "@app/contexts/AppContext"
 import { DesignEditorProvider } from "@app/contexts/DesignEditor"
 import { I18nextProvider } from "react-i18next"
 import { TimerProvider } from "@layerhub-io/use-timer"
+import { NextUIProvider } from '@nextui-org/react';
 import i18next from "i18next"
 import "@app/translations"
 import '@styles/globals.css'
@@ -24,15 +25,17 @@ function MyApp({ Component, pageProps }) {
       <NextNProgress color="#cb0038" showOnShallow={true} />
       <ThemeProvider enableSystem={true} attribute="class">
         <SessionContextProvider supabaseClient={supabaseClient}>
+          <NextUIProvider>
           <DesignEditorProvider>
             <TimerProvider>
               <AppProvider>
                 <ScenifyProvider>
-                    <I18nextProvider i18n={i18next}><Component {...pageProps} /></I18nextProvider>
+                  <I18nextProvider i18n={i18next}><Component {...pageProps} /></I18nextProvider>
                 </ScenifyProvider>
               </AppProvider>
             </TimerProvider>
-          </DesignEditorProvider>
+            </DesignEditorProvider>
+            </NextUIProvider>
         </SessionContextProvider>
       </ThemeProvider>
     </>

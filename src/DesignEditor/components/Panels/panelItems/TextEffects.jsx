@@ -1,11 +1,12 @@
 import React from "react"
 import Scrollable from "@components/Scrollable"
-import { FaTrash } from "react-icons/fa"
+import { FaTimes } from "react-icons/fa"
 import { throttle } from "lodash"
 import { useActiveObject, useEditor } from "@layerhub-io/react"
 import { TEXT_EFFECTS } from "@app/constants/design-editor"
 import Outline from "./Common/Outline"
 import Shadow from "./Common/Shadow"
+import useAppContext from "@app/hooks/useAppContext"
 
 const EFFECTS = {
   None: {
@@ -80,6 +81,7 @@ const TextEffects = () => {
   const [color, setColor] = React.useState("#b32aa9")
   const activeObject = useActiveObject()
   const editor = useEditor()
+  const { setActiveSubMenu } = useAppContext()
 
   const updateObjectFill = throttle((color) => {
     if (activeObject) {
@@ -111,8 +113,8 @@ const TextEffects = () => {
       >
         <div>Effects</div>
 
-        <div style={{ cursor: "pointer", display: "flex" }}>
-          <FaTrash size={24} />
+        <div onClick={() => setActiveSubMenu("Templates")} style={{ cursor: "pointer", display: "flex" }}>
+          <FaTimes size={24} />
         </div>
       </div>
       <Scrollable>

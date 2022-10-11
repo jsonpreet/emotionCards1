@@ -59,10 +59,10 @@ const FontSelector = () => {
           padding: "1.5rem",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <ArrowBackOutline size={24} />
-          <div className="font-semibold text-lg">Choose font</div>
+        <div onClick={() => setActiveSubMenu("Templates")} style={{ display: "flex", cursor: "pointer", alignItems: "center" }}>
+          <ArrowBackOutline size={24}/>
         </div>
+        <div className="font-semibold text-lg" style={{ display: "flex", alignItems: "start" }}>Choose font</div>
         <div onClick={() => setIsSidebarOpen(false)} style={{ cursor: "pointer", display: "flex" }}>
           <AngleDoubleLeft size={18} />
         </div>

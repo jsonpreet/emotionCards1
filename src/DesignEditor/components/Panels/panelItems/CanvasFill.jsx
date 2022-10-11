@@ -3,6 +3,7 @@ import { HexColorPicker } from "react-colorful"
 import { FaTimes } from 'react-icons/fa';
 import { throttle } from "lodash"
 import { useEditor } from "@layerhub-io/react"
+import useAppContext from "@app/hooks/useAppContext";
 
 const PRESET_COLORS = [
   "#f44336",
@@ -21,6 +22,7 @@ const PRESET_COLORS = [
 
 const CanvasFill = () => {
   const editor = useEditor()
+  const { setActiveSubMenu } = useAppContext()
 
   const updateCanvasBackground = throttle((color) => {
     editor.canvas.setBackgroundColor(color)
@@ -39,7 +41,7 @@ const CanvasFill = () => {
       >
         <div className="font-semibold text-lg">Canvas Fill</div>
 
-        <div style={{ cursor: "pointer", display: "flex" }}>
+        <div onClick={() => setActiveSubMenu("Templates")} style={{ cursor: "pointer", display: "flex" }}>
           <FaTimes size={24} />
         </div>
       </div>

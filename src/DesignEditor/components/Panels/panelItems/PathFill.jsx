@@ -4,6 +4,7 @@ import { HexColorPicker } from "react-colorful"
 import { throttle } from "lodash"
 import { useActiveObject, useEditor } from "@layerhub-io/react"
 import { FaTimes } from "react-icons/fa"
+import useAppContext from "@app/hooks/useAppContext"
 
 const PRESET_COLORS = [
   "#f44336",
@@ -24,6 +25,7 @@ const PathFill = () => {
   const [color, setColor] = React.useState("#b32aa9")
   const activeObject = useActiveObject()
   const editor = useEditor()
+  const { setActiveSubMenu } = useAppContext()
 
   const updateObjectFill = throttle((color) => {
     if (activeObject) {
@@ -46,7 +48,7 @@ const PathFill = () => {
       >
         <div>Path Fill</div>
 
-        <div style={{ cursor: "pointer", display: "flex" }}>
+        <div style={{ cursor: "pointer", display: "flex" }} onClick={() => setActiveSubMenu("Templates")}>
           <FaTimes size={24} />
         </div>
       </div>

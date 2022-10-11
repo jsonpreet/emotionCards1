@@ -54,10 +54,9 @@ const Common = () => {
           max={zoomMax}
           vertical={false}
           value={zoom}
-          onChange={(value) => handleChange("zoomRatio", value)}
-        />
+          onChange={(value) => handleChange("zoomRatio", value)}/>
         </div>
-        <button onClick={() => editor.zoom.zoomIn()} className="mr-2 bg-white text-black hover:bg-gray-200 p-2 rounded delay-75 duration-75">
+        <button onClick={() => editor.zoom.zoomIn()} className="ml-4 mr-2 bg-white text-black hover:bg-gray-200 p-2 rounded delay-75 duration-75">
           <Icons.AddCircleOutline size={24} />
         </button>
         <div className="flex flex-row justify-center items-center">
@@ -67,8 +66,7 @@ const Common = () => {
             max={zoomMax}
             min={zoomMin}
             className="text-black bg-gray-200 py-1 px-0 text-center ring-0 focus:ring-0 focus:rign-opacity-0 focus:outline-none"
-            onChange={(e) => handleChange("zoomRatio", e.target.value)}
-          />
+            onChange={(e) => handleChange("zoomRatio", e.target.value)}/>
           <span className="text-black bg-gray-200 -ml-2 py-1 pr-2 text-center">%</span>
         </div>
       </div>

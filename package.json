@@ -17,12 +17,11 @@
     "@heroicons/react": "^2.0.11",
     "@layerhub-io/react": "^0.3.1",
     "@layerhub-io/react-custom-scrollbar": "^0.0.1",
-    "@layerhub-io/types": "^0.3.0",
     "@layerhub-io/use-timer": "^0.1.1",
-    "@reduxjs/toolkit": "^1.8.5",
-    "@supabase/supabase-auth-helpers": "^1.4.2",
-    "@supabase/auth-helpers-nextjs": "^0.4.0-next.3", 
+    "@nextui-org/react": "^1.0.0-beta.10",
+    "@supabase/auth-helpers-nextjs": "^0.4.0-next.3",
     "@supabase/auth-helpers-react": "^0.3.0-next.2",
+    "@supabase/supabase-auth-helpers": "^1.4.2",
     "@supabase/supabase-js": "^2.0.0-rc.10",
     "@types/mime": "^3.0.1",
     "@types/node": "^18.8.2",
@@ -53,13 +52,10 @@
     "zustand": "^4.1.1"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.186",
-    "@types/react": "18.0.21",
     "autoprefixer": "^10.4.12",
     "eslint": "8.24.0",
     "eslint-config-next": "12.3.1",
     "postcss": "^8.4.16",
-    "tailwindcss": "^3.1.8",
-    "typescript": "4.8.4"
+    "tailwindcss": "^3.1.8"
   }
 }

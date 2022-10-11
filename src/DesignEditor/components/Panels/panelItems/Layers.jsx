@@ -8,6 +8,7 @@ import Eye from "@components/Icons/Eye"
 import EyeCrossed from "@components/Icons/EyeCrossed"
 import Delete from "@components/Icons/Delete"
 import useSetIsSidebarOpen from "@app/hooks/useSetIsSidebarOpen"
+import { Tooltip } from "@nextui-org/react";
 
 const Layers = () => {
   const editor = useEditor()
@@ -72,39 +73,39 @@ const Layers = () => {
               <div style={{ cursor: "pointer" }} onClick={() => editor.objects.select(object.id)}>
                 {object.name}
               </div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+              <div className="flex flex-row items-center justify-end">
                 {object.locked ? (
-                  <button
-                    onClick={() => editor.objects.unlock(object.id)} className='bg-gray-200 text-black mr-2  px-2 py-1 rounded cursor-pointer hover:bg-pink-500 delay-75 duration-75'
-                  >
-                    <Locked size={24} />
-                  </button>
+                  <Tooltip content="Unlock" color="invert" placement="bottom">
+                    <button onClick={() => editor.objects.unlock(object.id)} className='text-black mr-2 cursor-pointer hover:text-pink-500 delay-75 duration-75'>
+                      <Locked size={24} />
+                    </button>
+                  </Tooltip>
                 ) : (
-                  <button
-                    onClick={() => editor.objects.lock(object.id)} className='bg-gray-200 text-black mr-2  px-2 py-1 rounded cursor-pointer hover:bg-pink-500 delay-75 duration-75'
-                  >
-                    <Unlocked size={24} />
-                  </button>
+                  <Tooltip content="Lock" color="invert" placement="bottom">
+                    <button onClick={() => editor.objects.lock(object.id)} className='text-black mr-2 cursor-pointer hover:text-pink-500 delay-75 duration-75'>
+                      <Unlocked size={24} />
+                    </button>
+                  </Tooltip>
                 )}
 
                 {object.visible ? (
-                  <button
-                    onClick={() => editor.objects.update({ visible: false }, object.id)} className='bg-gray-200 text-black mr-2 px-2 py-1 rounded cursor-pointer hover:bg-pink-500 delay-75 duration-75'
-                  >
-                    <Eye size={24} />
-                  </button>
+                  <Tooltip content="Hide" color="invert" placement="bottom">
+                    <button onClick={() => editor.objects.update({ visible: false }, object.id)} className='text-black mr-2 cursor-pointer hover:text-pink-500 delay-75 duration-75'>
+                      <Eye size={24} />
+                    </button>
+                  </Tooltip>
                 ) : (
-                  <button
-                    onClick={() => editor.objects.update({ visible: true }, object.id)} className='bg-gray-200 text-black mr-2 px-2 py-1 rounded cursor-pointer hover:bg-pink-500 delay-75 duration-75'
-                  >
-                    <EyeCrossed size={24} />
-                  </button>
+                  <Tooltip content="Show" color="invert" placement="bottom">
+                    <button onClick={() => editor.objects.update({ visible: true }, object.id)} className='text-black mr-2 cursor-pointer hover:text-pink-500 delay-75 duration-75'>
+                      <EyeCrossed size={24} />
+                    </button>
+                  </Tooltip>
                 )}
-                <button
-                  onClick={() => editor.objects.remove(object.id)} className='bg-gray-200 text-black px-2 py-1 rounded cursor-pointer hover:bg-pink-500 delay-75 duration-75'
-                >
-                  <Delete size={24} />
-                </button>
+                <Tooltip content="Delete" color="invert" placement="bottom">
+                  <button onClick={() => editor.objects.remove(object.id)} className='text-black cursor-pointer hover:text-pink-500 delay-75 duration-75'>
+                    <Delete size={24} />
+                  </button>
+                </Tooltip>
               </div>
             </div>
           ))}

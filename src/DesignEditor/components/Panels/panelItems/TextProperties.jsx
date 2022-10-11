@@ -11,7 +11,6 @@ import { useActiveObject, useEditor } from "@layerhub-io/react"
 import { getTextOptions } from "@app/utils/object-options"
 import { fontStyleLabels } from "@app/constants/fonts"
 import { loadFonts } from "@app/utils/fonts"
-import { TextOptions } from "@app/interfaces/editor"
 import { defaultTextOptions } from "@app/constants/contants"
 import { useFontsStore } from "@stores/fonts"
 import { Listbox } from '@headlessui/react'

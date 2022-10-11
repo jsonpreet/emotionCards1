@@ -10,3 +10,7 @@ export async function updateSupabaseCookie(event, session) {
 export function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+
+export function get_url_extension( url ) {
+    return url.split(/[#?]/)[0].split('.').pop().trim();
+}

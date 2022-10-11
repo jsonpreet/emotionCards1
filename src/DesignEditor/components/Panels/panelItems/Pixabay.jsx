@@ -4,7 +4,6 @@ import AngleDoubleLeft from "@app/components/Icons/AngleDoubleLeft"
 import Scrollable from "@app/components/Scrollable"
 import { pixabayImages } from "@app/constants/mock-data"
 import { useDesignEditorStore } from "@stores/design-editor"
-import { selectPixabayResources } from "@app/store/slices/resources/selectors"
 import useSetIsSidebarOpen from "@app/hooks/useSetIsSidebarOpen"
 
 const Pixabay = () => {

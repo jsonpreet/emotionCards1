@@ -3,6 +3,7 @@ import { useActiveObject, useEditor } from "@layerhub-io/react"
 import { Popover } from '@headlessui/react'
 import FlipHorizontal from "@components/Icons/FlipHorizontal"
 import FlipVertical from "@components/Icons/FlipVertical"
+import { Tooltip } from "@nextui-org/react";
 
 const Flip = () => {
   const editor = useEditor()
@@ -30,22 +31,16 @@ const Flip = () => {
 
   return (
     <Popover className="relative">
-      <Popover.Button>Flip</Popover.Button>
-      <Popover.Panel className="absolute z-10 w-32 bg-white rounded-md shadow-lg p-2">
-        <div>
-          <button
-            style={{ width: "100%", justifyContent: "flex-start" }}
-            onClick={flipHorizontally}
-          >
-            <FlipHorizontal size={24} /> Flip horizontally
+      <Popover.Button><Tooltip content="Flip Layers" color="invert" placement="bottom">Flip</Tooltip></Popover.Button>
+      <Popover.Panel className="absolute z-10 w-52 bg-white rounded-md shadow-lg p-2">
+        <div className="flex flex-col items-start justify-center">
+          <button onClick={flipHorizontally} className='hover:bg-gray-100 w-full p-2 duration-75 delay-75 rounded flex items-center flex-row'>
+            <FlipHorizontal size={24} /> <span className="text-sm font-semibold">Flip horizontally</span>
+          </button>
+        <button onClick={flipVertically} className='hover:bg-gray-100 w-full p-2 duration-75 delay-75 rounded flex items-center flex-row'>
+          <FlipVertical size={24} /> <span className="text-sm font-semibold">Flip vertically</span>
           </button>
         </div>
-        <button
-          style={{ width: "100%", justifyContent: "flex-start" }}
-          onClick={flipVertically}
-        >
-          <FlipVertical size={24} /> Flip vertically
-        </button>
       </Popover.Panel>
     </Popover>
   )

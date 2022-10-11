@@ -1,8 +1,9 @@
 import React from "react"
 import { useActiveObject, useEditor } from "@layerhub-io/react"
-import OpacityIcon from "@components/Icons/Opacity."
+import OpacityIcon from "@components/Icons/Opacity"
 import { Popover } from '@headlessui/react'
 import ReactSlider from "react-slider";
+import { Tooltip } from "@nextui-org/react";
 
 const Opacity = () => {
   const editor = useEditor()
@@ -25,12 +26,12 @@ const Opacity = () => {
 
   return (
     <Popover className="relative">
-      <Popover.Button className='px-2 flex flex-row justify-center'><OpacityIcon size={22}/></Popover.Button>
+      <Popover.Button className='px-2 flex flex-row justify-center'><Tooltip content="Opacity" color="invert" placement="bottom"><OpacityIcon size={22}/></Tooltip></Popover.Button>
         <Popover.Panel className="absolute top-9 p-4 z-10 w-[300px] bg-white shadow-lg rounded right-0">
           <div className="flex flex-row justify-between items-center mb-3">
             <div className="text-black text-md font-medium">Opacity</div>
             <div className="w-[60px]">
-              <input className="w-full border text-center border-gray-300 py-1"
+              <input className="w-full bg-white border text-center border-gray-300 py-1"
                 onChange={() => {}}
                 value={Math.round(opacity)}
               />

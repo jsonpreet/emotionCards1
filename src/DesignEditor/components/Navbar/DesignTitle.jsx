@@ -1,6 +1,7 @@
 import React from "react"
 import CloudCheck from "@components/Icons/CloudCheck"
 import useDesignEditorContext from "@app/hooks/useDesignEditorContext"
+import { Tooltip } from "@nextui-org/react";
 
 const DesignTitle = () => {
   const [state, setState] = React.useState({ name: "My first design.", width: 0 })
@@ -27,10 +28,7 @@ const DesignTitle = () => {
 
   return (
     <div className="flex items-center justify-center text-white opacity-100 relative">
-      <div style={{ display: "flex", position: "absolute", top: "0px",
-            left: "0",
-            right: "0",
-            margin: "auto", }}>
+      
         <div
           style={{
             position: "absolute",
@@ -45,7 +43,6 @@ const DesignTitle = () => {
         >
           {state.name}
         </div>
-      </div>
       <div style={{ width: `${state.width}px`, display: 'flex'}}>
         <input
           onChange={(e) => handleInputChange(e.target.value)}
@@ -54,28 +51,18 @@ const DesignTitle = () => {
         />
       </div>
 
-      {/* <StatefulTooltip
-        showArrow={true}
-        overrides={{
-          Inner: {
-            style: {
-              backgroundColor: "#ffffff",
-            },
-          },
-        }}
-        content={() => <div style={{ backgroundColor:"#ffffff" }}>All changes are saved</div>}
-      > */}
+      <Tooltip content="All changes are saved." color="invert"  placement="bottom">
         <div
           style={{
             cursor: "pointer",
             padding: "10px",
             display: "flex",
             color: "#ffffff",
-          }}
+          }}  
         >
           <CloudCheck size={24} />
         </div>
-      {/* </StatefulTooltip> */}
+      </Tooltip>
     </div>
   )
 }
