@@ -1,37 +1,93 @@
 import React from "react"
 import AngleDoubleLeft from "@components/Icons/AngleDoubleLeft"
 import Scrollable from "@components/Scrollable"
+import DropZone from "@components/Dropzone"
 import { vectors } from "@app/constants/mock-data"
 import { useEditor } from "@layerhub-io/react"
 import useSetIsSidebarOpen from "@app/hooks/useSetIsSidebarOpen"
+import { useUser, useSessionContext } from '@supabase/auth-helpers-react';
+import { supabaseUrl } from "@app/lib/supabaseClient"
+import {Loader }  from '@components/Loading'
+import { nanoid } from "nanoid"
+import { useEffect } from "react"
 
 const Graphics = () => {
   const inputFileRef = React.useRef(null)
+  const [isUploading, setIsUploading] = React.useState(false)
+  const [isFetching, setIsFetching] = React.useState(true)
+  const [allGraphics, setAllImages] = React.useState([])
+  const user = useUser();
+  const { supabaseClient } = useSessionContext();
 
   const editor = useEditor()
   const setIsSidebarOpen = useSetIsSidebarOpen()
 
-  const addObject = React.useCallback(
-    (url) => {
-      if (editor) {
-        const options = {
-          type: "StaticVector",
-          src: url,
-        }
-        editor.objects.add(options)
-      }
-    },
-    [editor]
-  )
+  const uploadDir = 'graphics';
 
-  const handleDropFiles = (files) => {
-    const file = files[0]
-    const url = URL.createObjectURL(file)
-    editor.objects.add({
-      src: url,
-      type: "StaticVector",
-    })
+  useEffect(() => {
+    if (user) {
+      setIsFetching(true)
+      fetchImages()
+    }
+  }, [user])
+
+  const fetchImages = async () => {
+    const { status, statusText, data, error } = await supabaseClient.from("graphics").select().eq("user_id", user.id);
+    if (status === 200) {
+      setAllImages(data)
+      setIsFetching(false)
+    }
+    else {
+      console.log(error)
+    }
   }
+
+  const handleDropFiles = async (files) => {
+    setIsUploading(true)
+    const file = files[0]
+    const fileName = file.name
+    const extension = fileName.substring(fileName.lastIndexOf('.') + 1);
+    const url = URL.createObjectURL(file)
+    const newFileName = nanoid() + '.' + extension;
+    const { data, error } = await supabaseClient
+      .storage
+      .from('uploads')
+      .upload(uploadDir+'/'+newFileName, file, {
+        cacheControl: '3600',
+        upsert: false
+      })
+    if (data) {
+      const image = newFileName;
+      const url = data.path;
+      const user_id = user?.id;
+      insertRecord(image, url, user_id);
+    } else if (error) {
+      console.log(error);
+    }
+  }
+
+  const insertRecord = async (image, url, user_id) => {
+    const { status, statusText, data, error } = await supabaseClient.from("graphics").insert([{ image, url, user_id }]).select();
+    if (status === 201) {
+      console.log("Record inserted successfully");
+      setAllImages([...allGraphics, data[0]])
+      console.log(statusText);
+      //setUploads([...uploads, data[0]])
+      setIsUploading(false)
+    } else if (error) {
+      console.log(error);
+      setIsUploading(false)
+    }
+  }
+
+  // const handleDropFiles = (files) => {
+  //   const file = files[0]
+  //   const url = URL.createObjectURL(file)
+  //   editor.objects.add({
+  //     src: url,
+  //     type: "StaticVector",
+  //   })
+  // }
 
   const handleFileInput = (e) => {
     handleDropFiles(e.target.files)
@@ -40,42 +96,76 @@ const Graphics = () => {
   const handleInputFileRefClick = () => {
     inputFileRef.current?.click()
   }
+  const addObject = (url) => {
+    const options = {
+      type: "StaticVector",
+      src: url,
+    }
+    editor.objects.add(options)
+  }
+
+  // const addObject = React.useCallback(
+  //   (url) => {
+  //     if (editor) {
+  //       const options = {
+  //         type: "StaticVector",
+  //         src: url,
+  //       }
+  //       editor.objects.add(options)
+  //     }
+  //   },
+  //   [editor]
+  // )
 
   return (
-    <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          fontWeight: 500,
-          justifyContent: "space-between",
-          padding: "1.5rem",
-        }}
-      >
-        <div className="font-semibold text-lg">Graphics</div>
+    <div className="flex flex-col w-full">
+      <DropZone handleDropFiles={handleDropFiles}>
+        <div className="flex flex-col w-full flex-1">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              fontWeight: 500,
+              justifyContent: "space-between",
+              padding: "1.5rem",
+            }}
+          >
+            <div className="font-semibold text-lg">Graphics</div>
 
-        <div onClick={() => setIsSidebarOpen(false)} style={{ cursor: "pointer", display: "flex" }}>
-          <AngleDoubleLeft size={18} />
-        </div>
-      </div>
-
-      <div className="w-full flex flex-row items-center justify-center px-6">
-        <button
-          onClick={handleInputFileRefClick} className='bg-black w-full text-white px-2 py-2 rounded cursor-pointer hover:bg-pink-500 delay-75 duration-75'
-        >
-          Computer
-        </button>
-      </div>
-      <Scrollable>
-        <input onChange={handleFileInput} type="file" id="file" ref={inputFileRef} style={{ display: "none" }} />
-        <div>
-          <div style={{ display: "grid", gap: "8px", padding: "1.5rem", gridTemplateColumns: "1fr 1fr" }}>
-            {vectors.map((vector, index) => (
-              <GraphicItem onClick={() => addObject(vector)} key={index} preview={vector} />
-            ))}
+            <div onClick={() => setIsSidebarOpen(false)} style={{ cursor: "pointer", display: "flex" }}>
+              <AngleDoubleLeft size={18} />
+            </div>
           </div>
+
+          <div className="w-full flex flex-col items-center justify-center px-6">
+            <button onClick={handleInputFileRefClick} className='bg-black w-full text-white px-2 py-2 rounded cursor-pointer hover:bg-pink-500 delay-75 duration-75'>
+              Computer
+            </button>
+            <input onChange={handleFileInput} type="file" accept="image/*" id="file" ref={inputFileRef} style={{ display: "none" }} />
+            <div className="w-full flex flex-wrap items-center justify-center">
+              {(isFetching || isUploading) ? <Loader className={`relative z-10 w-8 h-8 mt-5 text-black`} />  : null}
+            </div>
+          </div>
+          <Scrollable>
+            <div className="w-full flex flex-col px-6 items-center justify-center">
+              <div className="grid w-full grid-cols-2 gap-4 mt-3">
+                {vectors.map((vector, index) => (
+                  <GraphicItem onClick={() => addObject(vector)} key={index} preview={vector} />
+                ))}
+              </div>
+              <div className="grid w-full grid-cols-2 gap-4 mt-3">
+                {allGraphics?.length > 0 && allGraphics.map((image) => {
+                  const { data } = supabaseClient.storage.from('uploads').getPublicUrl(image.url)
+                  const url = data.publicUrl
+                  return (
+                    <GraphicItem onClick={() => addObject(url)} key={image.id} preview={url} />
+                  )
+                })}
+              </div>
+            </div>
+          </Scrollable>
         </div>
-      </Scrollable>
+      </DropZone>
     </div>
   )
 }
@@ -93,6 +183,7 @@ const GraphicItem = ({ preview, onClick }) => {
         padding: "12px",
         borderRadius: "8px",
         overflow: "hidden",
+        width: "100%",
       }}
     >
       <div

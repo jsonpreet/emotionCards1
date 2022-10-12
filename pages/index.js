@@ -11,11 +11,11 @@ export default function Home () {
   const router = useRouter()
   const user = useUser();
   const { setUser, setIsLoggedIn } = useAuthStore()
-  useEffect(() => {
-    if (!user) {
-      router.replace('/login');
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.replace('/login');
+  //   }
+  // }, [user]);
   return (
     <>
       <Head>
@@ -28,4 +28,4 @@ export default function Home () {
   )
 }
 
-// export const getServerSideProps = withPageAuth({ redirectTo: '/login', authRequired: true });
+export const getServerSideProps = withPageAuth({ redirectTo: '/login', authRequired: true });

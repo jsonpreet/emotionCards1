@@ -6,9 +6,9 @@ import { useEditor } from "@layerhub-io/react"
 import useSetIsSidebarOpen from "@app/hooks/useSetIsSidebarOpen"
 import { nanoid } from "nanoid"
 import { useUser, useSessionContext } from '@supabase/auth-helpers-react';
+import { supabaseUrl } from "@app/lib/supabaseClient"
 import {Loader }  from '@components/Loading'
 import { useEffect } from "react"
-import { supabaseUrl } from "@app/lib/supabaseClient"
 
 const Uploads = () => {
   const inputFileRef = React.useRef()

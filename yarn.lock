@@ -1209,14 +1209,14 @@
   resolved "https://registry.yarnpkg.com/@stitches/react/-/react-1.2.8.tgz#954f8008be8d9c65c4e58efa0937f32388ce3a38"
   integrity sha512-9g9dWI4gsSVe8bNLlb+lMkBYsnIKCZTmvqvDG+Avnn69XfmHZKiaMrx7cgTaddq7aTPPmXiTsbFcUy0xgI4+wA==
 
-"@supabase/auth-helpers-nextjs@^0.3.0-next.3":
-  version "0.3.0-next.3"
-  resolved "https://registry.yarnpkg.com/@supabase/auth-helpers-nextjs/-/auth-helpers-nextjs-0.3.0-next.3.tgz#d5b3910b375fe00c11404f7861e9f92a786f2053"
-  integrity sha512-Mu9WDfQwj7vL83H9mm6q/xjvO0XmsZniPGAIljHIAFHnI/zeWWJptXAc5atTTn2oD8ipVicsSo3GzxPOjJA+Vg==
+"@supabase/auth-helpers-nextjs@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@supabase/auth-helpers-nextjs/-/auth-helpers-nextjs-0.4.0.tgz#b9b8528c7d6a6b3f7374428fc40fcafb41fd41f0"
+  integrity sha512-qECcdWfz/gK0vh7ZQ/JOZfEC2heCKZsR0mrogxAuWtwkNJy4sMdoSfxwp41g9ee56ubw+jJcCGAXfuoe5YRoBA==
   dependencies:
-    "@supabase/auth-helpers-shared" "0.2.0-next.2"
+    "@supabase/auth-helpers-shared" "0.2.0"
 
-"@supabase/auth-helpers-react@^0.3.0-next.2":
+"@supabase/auth-helpers-react@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@supabase/auth-helpers-react/-/auth-helpers-react-0.3.0.tgz#a0221c2bad6d8ec82dd42804e5b7e8c8abdff1a7"
   integrity sha512-yCJPUdtElPxmlk6FXZJdMWLnCuYU1qD7pzHxVjF+vO+NwddZ00qKTi53UJu83+H3QeDgZZrNR1ueCi/sLY+kYw==
@@ -1227,13 +1227,6 @@
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@supabase/auth-helpers-shared/-/auth-helpers-shared-0.2.0.tgz#9d740ddbb2a3bb7c4d8a4a30842646aa0afc64aa"
   integrity sha512-GaWzuP3RjLSdSlFajbgwQkZO24A14DSEIJG5sUva/sUYWkriEWROjf8Vbwg4YsSxqeU6fP3lloFeync9BwgyYA==
-
-"@supabase/auth-helpers-shared@0.2.0-next.2":
-  version "0.2.0-next.2"
-  resolved "https://registry.yarnpkg.com/@supabase/auth-helpers-shared/-/auth-helpers-shared-0.2.0-next.2.tgz#e4f7a06c342e47ef563c1ee67307cd451c1b6da9"
-  integrity sha512-e+u5EuMgQoLVP4cHXdv22V4L7seSKObZVCtkkBT+eqOuHVuJlc/VDM7PYoJVX57gZoUl1Gi1TuZ+ZO70CYgG6A==
-  dependencies:
-    cookie "^0.5.0"
 
 "@supabase/functions-js@^2.0.0":
   version "2.0.0"
@@ -1271,7 +1264,7 @@
   dependencies:
     cross-fetch "^3.1.5"
 
-"@supabase/supabase-js@^2.0.0-rc.10":
+"@supabase/supabase-js@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-2.0.0.tgz#2dacc37b68f6da5b766b5688c9cff7c24ab63b51"
   integrity sha512-8nNMXYzBlQVSDONFaNgyyxsAdUY+C9Q/7vEDYDdTFTyC3i+luXTDOSjHMLcjIky/+x5rIAcNQqqIJ48HJUluXA==
@@ -1885,9 +1878,9 @@ define-properties@^1.1.3, define-properties@^1.1.4:
     object-keys "^1.1.1"
 
 defined@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
-  integrity sha512-Y2caI5+ZwS5c3RiNDJ6u53VhQHv+hHKwhkI1iHvceKUHw9Df6EK2zRLfjejRgMuCuxK7PfSWIMwWecceVvThjQ==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.1.tgz#c0b9db27bfaffd95d6f61399419b893df0f91ebf"
+  integrity sha512-hsBd2qSVCRE+5PmNdHt1uzyrFu5d3RwmFDKzyNZMFq/EwDNJF7Ee5+D5oEKF0hU6LhtoUF1macFvOe4AskQC1Q==
 
 delayed-stream@~1.0.0:
   version "1.0.0"
@@ -1966,9 +1959,9 @@ earcut@^2.2.4:
   integrity sha512-/pjZsA1b4RPHbeWZQn66SWS8nZZWLQQ23oE3Eam7aroEFGEvwKAsJfZ9ytiEMycfzXWpca4FA9QIOehf7PocBQ==
 
 electron-to-chromium@^1.4.251:
-  version "1.4.277"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.277.tgz#6dc3d9724a0a19b7ab155bf8e37967357a081dc5"
-  integrity sha512-Ej4VyUfGdVY5D2J5WHAVNqrEFBKgeNcX7p/bBQU4x/VKwvnyEvGd62NEkIK3lykLEe9Cg4MCcoWAa+u97o0u/A==
+  version "1.4.279"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.279.tgz#84267fec806a8b1c5a1daebf726c4e296e5bcdf9"
+  integrity sha512-xs7vEuSZ84+JsHSTFqqG0TE3i8EAivHomRQZhhcRvsmnjsh5C2KdhwNKf4ZRYtzq75wojpFyqb62m32Oam57wA==
 
 emoji-regex@^8.0.0:
   version "8.0.0"
